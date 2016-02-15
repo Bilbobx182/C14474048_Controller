@@ -1,18 +1,17 @@
 package root;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
 public class Menu extends Application{
+
     Stage mainmenu;
     Scene sq,mm;
 
@@ -26,11 +25,7 @@ public class Menu extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        int padding = 30;
-
         mainmenu = primaryStage;
-
-
 
         //new profile
         Button profile = new Button("Create new profile");
@@ -50,14 +45,36 @@ public class Menu extends Application{
             }
         );
 
+
+
+
+            //START
+            Button begin = new Button("Start");
+            begin.setMaxWidth(200);
+            begin.setMaxHeight(200);
+            begin.setOnAction(prof ->
+                    {
+                        System.out.println("I'd call the xbox function here");
+                    }
+            );
+        Button nope = new Button("Start");
+        nope.setMaxWidth(200);
+        nope.setMaxHeight(200);
+        nope.setOnAction(prof ->
+                {
+                    System.out.println("I'd stop calling the xbox function here");
+                }
+        );
+
+
         //Layout 1 - children laid out in vertical column
         StackPane mmlayout = new StackPane();
-        mmlayout.getChildren().addAll(profile,select,quit);
+        mmlayout.getChildren().addAll(begin, profile, select, quit);
+        StackPane.setAlignment(begin, Pos.TOP_CENTER);
         StackPane.setAlignment(quit, Pos.BOTTOM_RIGHT);
         StackPane.setAlignment(profile, Pos.BOTTOM_CENTER);
         StackPane.setAlignment(select, Pos.BOTTOM_LEFT);
         mm = new Scene(mmlayout, 600, 600);
-
 
 
         Button unquit = new Button("CANCEL");
@@ -66,14 +83,11 @@ public class Menu extends Application{
                 mainmenu.setScene(mm);
                 }
         );
-
         //Layout 2
         StackPane quitscreen = new StackPane();
         quitscreen.getChildren().add(unquit);
         StackPane.setAlignment(unquit, Pos.BOTTOM_RIGHT);
         sq = new Scene(quitscreen, 600, 600);
-
-
         mainmenu.setScene(mm);
         mainmenu.show();
     }
