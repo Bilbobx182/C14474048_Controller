@@ -3,10 +3,7 @@ package root;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
@@ -57,7 +54,7 @@ public class Menu extends Application{
                         System.out.println("I'd call the xbox function here");
                     }
             );
-        Button nope = new Button("Start");
+        Button nope = new Button("Stop");
         nope.setMaxWidth(200);
         nope.setMaxHeight(200);
         nope.setOnAction(prof ->
@@ -77,16 +74,16 @@ public class Menu extends Application{
         mm = new Scene(mmlayout, 600, 600);
 
 
-        Button unquit = new Button("CANCEL");
-        unquit.setOnAction(aquit->
+        Button cancel = new Button("CANCEL");
+        cancel.setOnAction(aquit->
                 {
                 mainmenu.setScene(mm);
                 }
         );
         //Layout 2
         StackPane quitscreen = new StackPane();
-        quitscreen.getChildren().add(unquit);
-        StackPane.setAlignment(unquit, Pos.BOTTOM_RIGHT);
+        quitscreen.getChildren().add(cancel);
+        StackPane.setAlignment(cancel, Pos.BOTTOM_RIGHT);
         sq = new Scene(quitscreen, 600, 600);
         mainmenu.setScene(mm);
         mainmenu.show();
