@@ -6,6 +6,8 @@ import java.util.*;
 
 public class Fileio
 {
+
+
     public void write(String profilename,String aval,String bval, String xval,String yval)
     {
         PrintWriter writer = null;
@@ -32,29 +34,30 @@ public class Fileio
     String line;
     public boolean read(String filename)
     {
+        Menu menu = new Menu();
         boolean test;
+        int i=0;
+        try
+        {
+            FileReader fr = new FileReader(filename);
+            BufferedReader br = new BufferedReader(fr);
+            String line = br.readLine();
+            while(line != null)
+            {
 
-        try {
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader = new FileReader(filename);
-
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            while((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                menu.current[i]=line;
+                line =br.readLine();
+                System.out.println(menu.current[i]);
             }
             test=true;
-            bufferedReader.close();
+            br.close();
         }
-        catch(FileNotFoundException ex) {
-            System.out.println("Unable to open file '" + filename);
+        catch(FileNotFoundException ex)
+        {
             test=false;
         }
-        catch(IOException ex) {
-            System.out.println("Error reading file '" +filename);
-
-          //   ex.printStackTrace();
+        catch(IOException ex)
+        {
             test=false;
         }
         return test;

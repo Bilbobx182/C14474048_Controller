@@ -3,6 +3,7 @@ package root;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.geometry.*;
@@ -11,6 +12,8 @@ public class Menu extends Application{
 
     Stage mainmenu;
     Scene sq,mm;
+    String[] current = new String[5];
+    Label activepro = new Label();
 
     //Classes
     Profile pro1 = new Profile();
@@ -36,6 +39,16 @@ public class Menu extends Application{
         select.setOnAction(sel ->
         {
             pro1.selector();
+            String keeper=pro1.ofn;
+            if(pro1.test==true)
+            {
+                activepro.setText("Active profile:"+keeper);
+            }
+            else
+            {
+                activepro.setText("NO ACTIVE PROFILE");
+            }
+
         });
 
         //Quit button
@@ -67,8 +80,9 @@ public class Menu extends Application{
 
         //Layout 1 - children laid out in vertical column
         StackPane mmlayout = new StackPane();
-        mmlayout.getChildren().addAll(begin, profile, select, quit);
+        mmlayout.getChildren().addAll(begin, profile, select, quit,activepro);
         StackPane.setAlignment(begin, Pos.TOP_CENTER);
+        StackPane.setAlignment(activepro,Pos.CENTER);
         StackPane.setAlignment(quit, Pos.BOTTOM_RIGHT);
         StackPane.setAlignment(profile, Pos.BOTTOM_CENTER);
         StackPane.setAlignment(select, Pos.BOTTOM_LEFT);

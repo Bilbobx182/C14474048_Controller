@@ -21,6 +21,8 @@ public class Profile
     String aval,bval,xval,yval,profilename;
     ArrayList<String> list = new ArrayList<String>();
     int height;
+    boolean test;
+    String ofn;
 
     Profile()
     {
@@ -48,8 +50,9 @@ public class Profile
         set.setOnAction(lam ->
         {
             profilename= String.valueOf(proname.getText());
-            System.out.println(profilename);
+          //  System.out.println(profilename);
             setup(profilename);
+
             procreate.close();
         }
         );
@@ -99,7 +102,7 @@ public class Profile
         Button set = new Button("Set the variables");
         set.setOnAction(lam ->
                 {
-                    System.out.println("VARIABLES SET");
+                  //  System.out.println("VARIABLES SET");
                     aval = String.valueOf(afield.getText());
                     bval = String.valueOf(bfield.getText());
                     xval = String.valueOf(xfield.getText());
@@ -138,8 +141,9 @@ public class Profile
         set.setOnAction(lam ->
                 {
                     String filename= String.valueOf(selname.getText());
-                    System.out.println(filename);
-                    boolean test = fd.read(filename+".txt");
+                  //  System.out.println(filename);
+                     ofn=filename;
+                     test = fd.read(filename+".txt");
                     if(test!=true)
                     {
                         pb.warning("ERROR ON SEARCH","Sorry, your search gave me no love :( ");
