@@ -139,10 +139,14 @@ public class Profile
                 {
                     String filename= String.valueOf(selname.getText());
                     System.out.println(filename);
-                    boolean test = fd.read(filename);
+                    boolean test = fd.read(filename+".txt");
                     if(test!=true)
                     {
                         pb.warning("ERROR ON SEARCH","Sorry, your search gave me no love :( ");
+                    }
+                    else
+                    {
+                        pb.warning("Found it!", "I found your profile :) ");
                     }
                     select.close();
 
