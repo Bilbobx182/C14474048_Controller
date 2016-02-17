@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Profile
 {
     Fileio fd = new Fileio();
+    Pbox pb = new Pbox();
     String aval,bval,xval,yval,profilename;
     ArrayList<String> list = new ArrayList<String>();
     int height;
@@ -116,5 +117,46 @@ public class Profile
         Scene scene = new Scene(layout);
         pop.setScene(scene);
         pop.showAndWait();
+    }
+
+    public void selector()
+    {
+        Stage select = new Stage();
+        select.initModality(Modality.APPLICATION_MODAL);
+
+        select.setMinWidth(height/2);
+        select.setMaxHeight(height);
+        select.setMinHeight(height);
+        select.setMaxWidth(height/2);
+
+        Label sellab = new Label("Enter in the profile you named:");
+        TextField selname = new TextField();
+        selname.setPromptText("Profile name goes here");
+
+
+        Button set = new Button("Search for the profile!");
+        set.setOnAction(lam ->
+                {
+                    String filename= String.valueOf(selname.getText());
+                    System.out.println(filename);
+                    boolean test = fd.read(filename);
+                    if(test!=true)
+                    {
+                        pb.warning("ERROR ON SEARCH","Sorry, your search gave me no love :( ");
+                    }
+                    select.close();
+
+                }
+        );
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(selname,sellab,set);
+        layout.setAlignment(Pos.CENTER);
+
+        //Display window and wait for it to be closed before returning
+        Scene scene = new Scene(layout);
+        select.setScene(scene);
+        select.showAndWait();
+
     }
 }

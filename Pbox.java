@@ -25,7 +25,7 @@ public class Pbox{
         Label label = new Label();
         label.setText(text);
 
-        Button close = new Button("OK I understand the consequence of this");
+        Button close = new Button("I understand");
         close.setOnAction(lam -> pop.close());
 
         VBox layout = new VBox(10);

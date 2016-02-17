@@ -28,5 +28,36 @@ public class Fileio
         writer.println(yval);
         writer.close();
     }
+
+    String line;
+    public boolean read(String filename)
+    {
+        boolean test;
+
+        try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader = new FileReader(filename);
+
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+            test=true;
+            bufferedReader.close();
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + filename);
+            test=false;
+        }
+        catch(IOException ex) {
+            System.out.println("Error reading file '" +filename);
+
+          //   ex.printStackTrace();
+            test=false;
+        }
+        return test;
+    }
 }
 

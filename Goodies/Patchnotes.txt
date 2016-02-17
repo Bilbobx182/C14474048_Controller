@@ -3,3 +3,4 @@ V.0.0.2		Added in the readme.
 V.0.0.3		Added in the start button to the main menu.
 V.0.0.4		Fixed code.
 V.0.0.5		Implemented writing profiles to files.
+V.0.0.6		Implemented error handling by GUI box appearing when profile search query returns nothing. 

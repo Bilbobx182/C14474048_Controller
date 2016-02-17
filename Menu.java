@@ -14,7 +14,6 @@ public class Menu extends Application{
 
     //Classes
     Profile pro1 = new Profile();
-    Fileio fd = new Fileio();
 
 
     public static void main(String[] args) {
@@ -34,6 +33,10 @@ public class Menu extends Application{
         );
         //select
         Button select = new Button("Select an existing profile");
+        select.setOnAction(sel ->
+        {
+            pro1.selector();
+        });
 
         //Quit button
         Button quit = new Button("Quit");

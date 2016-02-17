@@ -1,0 +1,2 @@
+Have a recent profiles so they can enter the names. Use a sorting thing for it.
+Display said recent profiles on the profile selector screen. 
