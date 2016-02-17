@@ -12,9 +12,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
+import java.util.ArrayList;
+
 public class Profile
 {
+    Fileio fd = new Fileio();
     String aval,bval,xval,yval,profilename;
+    ArrayList<String> list = new ArrayList<String>();
     int height;
 
     Profile()
@@ -99,14 +103,7 @@ public class Profile
                     bval = String.valueOf(bfield.getText());
                     xval = String.valueOf(xfield.getText());
                     yval = String.valueOf(yfield.getText());
-
-
-
-                    System.out.println("A value is " + aval);
-                    System.out.println("B value is " + bval);
-                    System.out.println("X value is " + xval);
-                    System.out.println("Y value is " + yval);
-
+                    fd.write(profilename,aval,bval,xval,yval);
                     pop.close();
                 }
         );
@@ -119,6 +116,5 @@ public class Profile
         Scene scene = new Scene(layout);
         pop.setScene(scene);
         pop.showAndWait();
-
     }
 }

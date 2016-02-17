@@ -14,6 +14,7 @@ public class Menu extends Application{
 
     //Classes
     Profile pro1 = new Profile();
+    Fileio fd = new Fileio();
 
 
     public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class Menu extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainmenu = primaryStage;
-
+        mainmenu.setOnCloseRequest(lam -> mainmenu.close());
         //new profile
         Button profile = new Button("Create new profile");
         profile.setOnAction(prof ->
@@ -41,9 +42,6 @@ public class Menu extends Application{
                 mainmenu.setScene(sq);
             }
         );
-
-
-
 
             //START
             Button begin = new Button("Start");
