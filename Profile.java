@@ -30,7 +30,6 @@ public class Profile
         height=600;
     }
 
-
     public void title()
     {
         Stage procreate = new Stage();
@@ -65,7 +64,6 @@ public class Profile
         Scene scene = new Scene(layout);
         procreate.setScene(scene);
         procreate.showAndWait();
-
     }
 
     public void setup(String profilename) {
@@ -117,8 +115,9 @@ public class Profile
         layout.setAlignment(Pos.CENTER);
 
         //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
-        pop.setScene(scene);
+        Scene proscene2 = new Scene(layout);
+        proscene2.getStylesheets().add("style.css");
+        pop.setScene(proscene2);
         pop.showAndWait();
     }
 
@@ -132,7 +131,7 @@ public class Profile
         select.setMinHeight(height);
         select.setMaxWidth(height/2);
 
-        Label sellab = new Label("Enter in the profile you named:");
+        Label sellab = new Label("Enter in the profile you want to use:");
         TextField selname = new TextField();
         selname.setPromptText("Profile name goes here");
 
@@ -153,17 +152,17 @@ public class Profile
                         pb.warning("Found it!", "I found your profile :) ");
                     }
                     select.close();
-
                 }
         );
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(selname,sellab,set);
+        layout.getChildren().addAll(sellab,selname,set);
         layout.setAlignment(Pos.CENTER);
 
         //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
-        select.setScene(scene);
+        Scene proscene = new Scene(layout);
+        proscene.getStylesheets().add("style.css");
+        select.setScene(proscene);
         select.showAndWait();
 
     }

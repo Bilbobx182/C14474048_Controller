@@ -1,7 +1,23 @@
-#pane{
-        -fx-background-image: url("https://i.ytimg.com/vi/0MdxlkDMoDk/maxresdefault.jpg");
-        -fx-background-repeat: stretch;   
-        -fx-background-size: 600 600;
-        -fx-background-position: center center;
-        -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
-    }
+.root {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-base: #FFFF00;
+    -fx-stroke: #b2bfc8;
+    -fx-background: #4C4C4C;
+
+}
+
+.button
+{
+    -fx-base:#ffa500;
+    -fx-stroke-dash-offset: 3;
+
+
+}
+
+.label {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill:#FFFF00;
+    -fx-opacity: 0.6;
+}

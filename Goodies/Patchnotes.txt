@@ -5,4 +5,5 @@ V.0.0.4		Fixed code.
 V.0.0.5		Implemented writing profiles to files.
 V.0.0.6		Implemented error handling by GUI box appearing when profile search query returns nothing. 
 V.0.0.7		Implemented searching for profiles with positive gui if the profile is found. 
-v.0.0.8		Active Profile now on home screen.
+V.0.0.8		Active Profile now on home screen.
+V.0.0.9		Added in first attempt at styling, subject to change.
