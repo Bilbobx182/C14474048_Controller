@@ -21,6 +21,7 @@ public class Xbox{
     static boolean done;
     public static int timer;
     static int time;
+    static int timemod;
 
     Xbox()
     {
@@ -28,6 +29,7 @@ public class Xbox{
         height=600;
         width=height/2;
         time=timer=0;
+        timemod=250;
 
     }
 
@@ -103,8 +105,10 @@ public class Xbox{
                 {
                     //delay so it polls the controller, so that each time they hit a button it will pick it up, but it wont pick up more than 1 time on a tap of a button
                     //puts the thread to sleep for a specific amount of miliseconds I have yet to decide how many.
-                    Thread.sleep(125);
-                    timer+=500;
+                    Thread.sleep(timemod);
+                    timer+=timemod;
+//                    System.out.println(time);
+//                    System.out.println(timer);
                     controller.poll();
                     a = controller.isButtonPressed(0);
                     b = controller.isButtonPressed(1);
