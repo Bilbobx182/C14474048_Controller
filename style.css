@@ -1,21 +1,20 @@
-.root {
+.root
+{
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-base: #FFFF00;
     -fx-stroke: #b2bfc8;
     -fx-background: #4C4C4C;
-
 }
 
 .button
 {
     -fx-base:#ffa500;
     -fx-stroke-dash-offset: 3;
-
-
 }
 
-.label {
+.label
+{
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill:#FFFF00;

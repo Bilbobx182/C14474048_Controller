@@ -15,8 +15,8 @@ import org.lwjgl.input.Controllers;
 public class Xbox{
 
     static Controller controller;
-    static boolean a, b, x, y;
-    static  int ac, bc, xc, yc;
+    static boolean a, b, x, y,back;
+    static  int ac, bc, xc, yc,backc;
     static int height,width;
     static boolean done;
     public static int timer;
@@ -96,59 +96,65 @@ public class Xbox{
             controller.setDeadZone(i, (float) 0.4);
         }
     }
-
-        public static void polling()
+    public static void polling()
+    {
+        try
         {
-            try
+            while (done != true)
             {
-                while (done != true)
-                {
-                    //delay so it polls the controller, so that each time they hit a button it will pick it up, but it wont pick up more than 1 time on a tap of a button
-                    //puts the thread to sleep for a specific amount of miliseconds I have yet to decide how many.
-                    Thread.sleep(timemod);
-                    timer+=timemod;
-//                    System.out.println(time);
-//                    System.out.println(timer);
-                    controller.poll();
-                    a = controller.isButtonPressed(0);
-                    b = controller.isButtonPressed(1);
-                    x = controller.isButtonPressed(2);
-                    y = controller.isButtonPressed(3);
-                    System.out.print("A" + ac);
-                    System.out.print("B" + bc);
-                    System.out.print("X" + xc);
-                    System.out.print("Y" + yc);
-                  //  System.out.println(timer);
-                    System.out.println();
-                    if (a)
-                    {
-                        ac++;
-                    }
-                    if (b)
-                    {
-                        bc++;
-                    }
-                    if (x)
-                    {
-                        xc++;
-                    }
-                    if (y)
-                    {
-                        yc++;
-                    }
+                Thread.sleep(timemod);
+                timer+=timemod;
+                //delay so it polls the controller, so that each time they hit a button it will pick it up, but it wont pick up more than 1 time on a tap of a button
+                //puts the thread to sleep for a specific amount of miliseconds I have yet to decide how many.
+                //                    System.out.println(time);
+                //                    System.out.println(timer);
+                controller.poll();
+                a = controller.isButtonPressed(0);
+                b = controller.isButtonPressed(1);
+                x = controller.isButtonPressed(2);
+                y = controller.isButtonPressed(3);
+                back=controller.isButtonPressed(6);
 
-                    if(timer==time)
-                    {
-                        done=true;
-                        monitor();
-                    }
+
+                System.out.print("A" + ac);
+                System.out.print("B" + bc);
+                System.out.print("X" + xc);
+                System.out.print("Y" + yc);
+
+                //  System.out.println(timer);
+                System.out.println();
+                if(a)
+                {
+                    ac++;
+                }
+                if(b)
+                {
+                    bc++;
+                }
+                if(x)
+                {
+                    xc++;
+                }
+                if(y)
+                {
+                    yc++;
+                }
+                if(back)
+                {
+                    done=true;
+                }
+                if(timer==time)
+                {
+                    done=true;
+                    monitor();
                 }
             }
-            catch(InterruptedException ie)
-            {
-                System.out.println("ERROR SLEEPING THREAD");
-            }
         }
+        catch(InterruptedException ie)
+        {
+            System.out.println("ERROR SLEEPING THREAD");
+        }
+    }
 
     public static void timer()
     {
@@ -186,4 +192,4 @@ public class Xbox{
 
         entertime.showAndWait();
     }
-    }
+}

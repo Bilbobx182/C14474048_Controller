@@ -16,17 +16,20 @@ public class Menu extends Application{
     Scene sq,mm;
     String[] current = new String[5];
     Label activepro = new Label();
+    boolean active;
 
     //Classes
     public static Profile pro1 = new Profile();
     public static Xbox box = new Xbox();
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception
+    {
         mainmenu = primaryStage;
         mainmenu.setOnCloseRequest(lam -> mainmenu.close());
         box.setup();
@@ -34,9 +37,9 @@ public class Menu extends Application{
         //new profile
         Button profile = new Button("Create new profile");
         profile.setOnAction(prof ->
-            {
-               pro1.title();
-            }
+                {
+                    pro1.title();
+                }
         );
         //select
         Button select = new Button("Select profile");
@@ -59,6 +62,7 @@ public class Menu extends Application{
                 }
 
                 activepro.setText("Active profile:"+keeper);
+                active=true;
             }
             else
             {
@@ -70,22 +74,29 @@ public class Menu extends Application{
         //Quit button
         Button quit = new Button("Quit");
         quit.setOnAction(aquit->
-            {
-                mainmenu.setScene(sq);
-            }
+                {
+                    mainmenu.setScene(sq);
+                }
         );
 
-            //START
-            Button begin = new Button("Start");
-            begin.setMaxWidth(200);
-            begin.setMaxHeight(200);
-            begin.setOnAction(prof ->
+        //START
+        Button begin = new Button("Start");
+        begin.setMaxWidth(200);
+        begin.setMaxHeight(200);
+        begin.setOnAction(prof ->
+                {
+                    if (active == true)
                     {
                         box.setvars();
                         box.timer();
                         box.polling();
                     }
-            );
+                    else
+                    {
+                        activepro.setText("NO ACTIVE PROFILE");
+                    }
+                }
+        );
         Button nope = new Button("Stop");
         nope.setMaxWidth(200);
         nope.setMaxHeight(200);
@@ -94,7 +105,6 @@ public class Menu extends Application{
                     System.out.println("I'd stop calling the xbox function here");
                 }
         );
-
 
         //Layout 1 - children laid out in vertical column
         StackPane mmlayout = new StackPane();
@@ -106,13 +116,13 @@ public class Menu extends Application{
         StackPane.setAlignment(select, Pos.BOTTOM_LEFT);
         mm = new Scene(mmlayout, 600, 600);
 
-
         Button cancel = new Button("CANCEL");
         cancel.setOnAction(aquit->
                 {
-                mainmenu.setScene(mm);
+                    mainmenu.setScene(mm);
                 }
         );
+
         //Layout 2
         StackPane quitscreen = new StackPane();
         quitscreen.getChildren().add(cancel);

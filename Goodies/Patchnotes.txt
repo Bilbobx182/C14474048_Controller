@@ -11,3 +11,4 @@ V.0.1.0		Re-implemented Xbox code. Times and displays the amount it's pressed af
 V.0.1.1		Fixed program breaking after finishing taking in and displaying control input and other minor tweaks.
 V.0.1.2		Allowed user to input timer amount.
 V.0.1.3		Fixed breaking time.
+V.0.1.4		Implemented fix so they cant time without an active profile.
