@@ -18,8 +18,8 @@ public class Menu extends Application{
     Label activepro = new Label();
 
     //Classes
-   public static Profile pro1 = new Profile();
-
+    public static Profile pro1 = new Profile();
+    public static Xbox box = new Xbox();
 
     public static void main(String[] args) {
         launch(args);
@@ -80,7 +80,8 @@ public class Menu extends Application{
             begin.setMaxHeight(200);
             begin.setOnAction(prof ->
                     {
-                        System.out.println("I'd call the xbox function here");
+                        box.setup();
+                        box.polling();
                     }
             );
         Button nope = new Button("Stop");
