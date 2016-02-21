@@ -8,3 +8,5 @@ V.0.0.7		Implemented searching for profiles with positive gui if the profile is 
 V.0.0.8		Active Profile now on home screen.
 V.0.0.9		Added in first attempt at styling, subject to change.
 V.0.1.0		Re-implemented Xbox code. Times and displays the amount it's pressed after 4 and a bit minutes. Time is still yet to be perfected. Live stat class added to the xbox class.
+V.0.1.1		Fixed program breaking after finishing taking in and displaying control input and other minor tweaks.
+V.0.1.2		Allowed user to input timer amount.

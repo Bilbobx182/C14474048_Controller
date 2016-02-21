@@ -29,6 +29,7 @@ public class Menu extends Application{
     public void start(Stage primaryStage) throws Exception {
         mainmenu = primaryStage;
         mainmenu.setOnCloseRequest(lam -> mainmenu.close());
+        box.setup();
 
         //new profile
         Button profile = new Button("Create new profile");
@@ -80,7 +81,8 @@ public class Menu extends Application{
             begin.setMaxHeight(200);
             begin.setOnAction(prof ->
                     {
-                        box.setup();
+                        box.setvars();
+                        box.timer();
                         box.polling();
                     }
             );
