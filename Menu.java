@@ -71,11 +71,12 @@ public class Menu extends Application{
 
         });
 
+        Pie pie=new Pie();
         //Quit button
         Button quit = new Button("Quit");
         quit.setOnAction(aquit->
                 {
-                    mainmenu.setScene(sq);
+                   // mainmenu.setScene(sq);
                 }
         );
 
@@ -90,6 +91,7 @@ public class Menu extends Application{
                         box.setvars();
                         box.timer();
                         box.polling();
+                        pie.render();
                     }
                     else
                     {

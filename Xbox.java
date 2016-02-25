@@ -19,23 +19,21 @@ public class Xbox{
     static  int ac, bc, xc, yc,backc;
     static int height,width;
     static boolean done;
-    public static int timer;
-    static int time;
-    static int timemod;
+    static long time;
+    static long ctime;
 
     Xbox()
     {
         done=a=b=x=y=false;
         height=600;
         width=height/2;
-        time=timer=0;
-        timemod=250;
+        time=0;
 
     }
 
     public static void setvars()
     {
-        ac=bc=xc=yc=timer=0;
+        ac=bc=xc=yc=0;
         done=false;
     }
 
@@ -98,16 +96,13 @@ public class Xbox{
     }
     public static void polling()
     {
-        try
-        {
-            while (done != true)
+          while (done != true)
             {
-                Thread.sleep(timemod);
-                timer+=timemod;
+                System.out.println(tstart);
                 //delay so it polls the controller, so that each time they hit a button it will pick it up, but it wont pick up more than 1 time on a tap of a button
                 //puts the thread to sleep for a specific amount of miliseconds I have yet to decide how many.
-                //                    System.out.println(time);
-                //                    System.out.println(timer);
+//                                    System.out.println(time);
+//                                    System.out.println(timer);
                 controller.poll();
                 a = controller.isButtonPressed(0);
                 b = controller.isButtonPressed(1);
@@ -115,11 +110,11 @@ public class Xbox{
                 y = controller.isButtonPressed(3);
                 back=controller.isButtonPressed(6);
 
-
-                System.out.print("A" + ac);
-                System.out.print("B" + bc);
-                System.out.print("X" + xc);
-                System.out.print("Y" + yc);
+//
+//                System.out.print("A" + ac);
+//                System.out.print("B" + bc);
+//                System.out.print("X" + xc);
+//                System.out.print("Y" + yc);
 
                 //  System.out.println(timer);
                 System.out.println();
@@ -143,19 +138,18 @@ public class Xbox{
                 {
                     done=true;
                 }
-                if(timer==time)
+                ctime = System.currentTimeMillis();
+                System.out.println(ctime);
+                if(ctime>=tstart)
                 {
                     done=true;
                     monitor();
                 }
-            }
-        }
-        catch(InterruptedException ie)
-        {
-            System.out.println("ERROR SLEEPING THREAD");
+
         }
     }
 
+    static long tstart;
     public static void timer()
     {
         Stage entertime = new Stage();
@@ -175,8 +169,12 @@ public class Xbox{
         set.setOnAction(lam ->
                 {
                     time=Integer.valueOf(tl.getText());
+                    //get the current system time they start the box
                     time=time*60000; //make it into MS for the timer
-                    System.out.println(time);
+
+                    //tstart now has the value of the system time when it all should end.
+                    tstart = System.currentTimeMillis();
+                    tstart=time+tstart;
                     entertime.close();
                 }
         );
@@ -192,4 +190,5 @@ public class Xbox{
 
         entertime.showAndWait();
     }
+
 }

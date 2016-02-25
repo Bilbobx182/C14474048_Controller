@@ -1,12 +1,10 @@
 package root;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,7 +40,7 @@ public class Profile
 
         Label prolabel = new Label("Name the profile:");
         TextField proname = new TextField();
-        proname.setPromptText("What you want the B button to be");
+        proname.setPromptText("Example is Rocket League");
 
 
         Button set = new Button("Create the profile!");
