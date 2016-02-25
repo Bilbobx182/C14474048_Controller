@@ -61,6 +61,7 @@ public class Profile
         //Display window and wait for it to be closed before returning
         Scene scene = new Scene(layout);
         procreate.setScene(scene);
+        scene.getStylesheets().add("style.css");
         procreate.showAndWait();
     }
 

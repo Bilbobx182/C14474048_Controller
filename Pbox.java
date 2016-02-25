@@ -35,6 +35,7 @@ public class Pbox{
         //Display window and wait for it to be closed before returning
         Scene scene = new Scene(layout);
         pop.setScene(scene);
+        scene.getStylesheets().add("style.css");
         pop.showAndWait();
     }
 }

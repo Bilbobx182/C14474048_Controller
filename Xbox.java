@@ -16,6 +16,7 @@ public class Xbox{
 
     static Controller controller;
     static boolean a, b, x, y,back;
+    static boolean abo, bbo, xbo, ybo;
     static  int ac, bc, xc, yc,backc;
     static int height,width;
     static boolean done;
@@ -49,7 +50,7 @@ public class Xbox{
         live.setMinHeight(height);
         live.setMaxWidth(height/2);
 
-        Label alab = new Label("A: "+ ac);
+        Label alab = new Label("A: "+ac);
         Label blab = new Label("B: "+bc);
         Label xlab = new Label("X: "+xc);
         Label ylab = new Label("Y: "+yc);
@@ -96,56 +97,71 @@ public class Xbox{
     }
     public static void polling()
     {
-          while (done != true)
+        while (done != true)
+        {
+            controller.poll();
+            a = controller.isButtonPressed(0);
+            b = controller.isButtonPressed(1);
+            x = controller.isButtonPressed(2);
+            y = controller.isButtonPressed(3);
+            back=controller.isButtonPressed(6);
+
+            //checking the state and which button is active.
+        //    System.out.println();
+            if(a)
             {
-                System.out.println(tstart);
-                //delay so it polls the controller, so that each time they hit a button it will pick it up, but it wont pick up more than 1 time on a tap of a button
-                //puts the thread to sleep for a specific amount of miliseconds I have yet to decide how many.
-//                                    System.out.println(time);
-//                                    System.out.println(timer);
-                controller.poll();
-                a = controller.isButtonPressed(0);
-                b = controller.isButtonPressed(1);
-                x = controller.isButtonPressed(2);
-                y = controller.isButtonPressed(3);
-                back=controller.isButtonPressed(6);
+                abo=true;
+            }
+            if(b)
+            {
+                bbo=true;
+            }
+            if(x)
+            {
+                xbo=true;
+            }
+            if(y)
+            {
+                ybo=true;
+            }
+            //incrementing for each time a button is pressed.
+            if(abo==true &&a==false)
+            {
+                abo=false;
+                ac++;
+            }
+            if(bbo==true &&b ==false)
+            {
+                bbo=false;
+                bc++;
+            }
 
-//
-//                System.out.print("A" + ac);
-//                System.out.print("B" + bc);
-//                System.out.print("X" + xc);
-//                System.out.print("Y" + yc);
+            if(xbo==true &&x ==false)
+            {
+                xbo=false;
+                xc++;
+            }
+            if(ybo==true && y ==false)
+            {
+                ybo=false;
+                yc++;
+            }
 
-                //  System.out.println(timer);
-                System.out.println();
-                if(a)
-                {
-                    ac++;
-                }
-                if(b)
-                {
-                    bc++;
-                }
-                if(x)
-                {
-                    xc++;
-                }
-                if(y)
-                {
-                    yc++;
-                }
-                if(back)
-                {
-                    done=true;
-                }
-                ctime = System.currentTimeMillis();
-                System.out.println(ctime);
-                if(ctime>=tstart)
-                {
-                    done=true;
-                    monitor();
-                }
+          //  System.out.println(ac);
+            if(back)
+            {
+                done=true;
+            }
 
+            //gets the current time for checking later.
+            ctime = System.currentTimeMillis();
+
+            //checking to see if the current time is the  same as the time end time
+            if(ctime>=tstart)
+            {
+                done=true;
+                monitor();
+            }
         }
     }
 
@@ -163,7 +179,6 @@ public class Xbox{
         Label ta= new Label("Timer amount in minutes:");
         TextField tl = new TextField();
         tl.setPromptText("5");
-
 
         Button set = new Button("Start timer");
         set.setOnAction(lam ->

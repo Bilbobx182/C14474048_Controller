@@ -1,12 +1,13 @@
 package root;
 
 import java.io.*;
-import java.lang.*;
-import java.util.*;
+import java.util.ArrayList;
+
+
 
 public class Fileio
 {
-
+    public static ArrayList<String> input = new ArrayList<>();
 
     public void write(String profilename,String aval,String bval, String xval,String yval)
     {
@@ -38,19 +39,20 @@ public class Fileio
         boolean test;
         int i=0;
         try
-        {
-            FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
-            String line = br.readLine();
-            while(line != null)
-            {
 
-                menu.current[i]=line;
-                line =br.readLine();
-                System.out.println(menu.current[i]);
+        {
+
+
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String current="";
+            while((current=reader.readLine()) !=null)
+            {
+                input.add(current);
+              //  System.out.println(input.get(i) + i);
+                i++;
             }
             test=true;
-            br.close();
+            reader.close();
         }
         catch(FileNotFoundException ex)
         {
@@ -61,5 +63,15 @@ public class Fileio
             test=false;
         }
         return test;
+    }
+
+    public void inputgetter()
+    {
+        int i=0;
+        while(i<4)
+        {
+            System.out.println(input.get(i));
+            i++;
+        }
     }
 }

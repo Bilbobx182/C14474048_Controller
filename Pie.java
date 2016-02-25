@@ -15,17 +15,17 @@ public class Pie extends Menu {
         Stage stage = new Stage();
         Scene scene = new Scene(new Group());
         stage.setTitle(pro1.ofn + "Stats");
-        
+
         stage.setWidth(500);
         stage.setHeight(500);
         stage.setMinHeight(500);
         stage.setMinWidth(500);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-                        new PieChart.Data("A", box.ac),
-                        new PieChart.Data("B", box.bc),
-                        new PieChart.Data("X", box.xc),
-                        new PieChart.Data("Y",box.yc));
+                        new PieChart.Data("(A)  "+fd.input.get(0), box.ac),
+                        new PieChart.Data("(B)  "+fd.input.get(1), box.bc),
+                        new PieChart.Data("(X)  "+fd.input.get(2), box.xc),
+                        new PieChart.Data("(Y)  "+fd.input.get(3), box.yc));
          PieChart chart = new PieChart(data);
         chart.setTitle( pro1.ofn );
 

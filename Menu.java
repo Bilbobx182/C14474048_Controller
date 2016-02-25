@@ -9,18 +9,20 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
+import java.util.ArrayList;
+
 public class Menu extends Application{
 
     Stage mainmenu;
     int counter=0;
     Scene sq,mm;
-    String[] current = new String[5];
     Label activepro = new Label();
     boolean active;
 
     //Classes
     public static Profile pro1 = new Profile();
     public static Xbox box = new Xbox();
+    public static Fileio fd = new Fileio();
 
     public static void main(String[] args)
     {
@@ -47,20 +49,12 @@ public class Menu extends Application{
         {
             pro1.selector();
             String keeper=pro1.ofn;
-            String[] holder=new String[5];
+
             if(pro1.test==true)
             {
-                if(counter < 5)
-                {
-                    holder[counter] = pro1.ofn;
-                    counter++;
-                    System.out.println(counter);
-                    for(int i=0;i<5;i++)
-                    {
-                        System.out.println(holder[i]);
-                    }
-                }
+                System.out.println("NULL CALLER");
 
+              fd.inputgetter();
                 activepro.setText("Active profile:"+keeper);
                 active=true;
             }
@@ -92,6 +86,7 @@ public class Menu extends Application{
                         box.timer();
                         box.polling();
                         pie.render();
+                        box.setvars();
                     }
                     else
                     {
