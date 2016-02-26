@@ -70,14 +70,16 @@ public class Menu extends Application{
         Button quit = new Button("Quit");
         quit.setOnAction(aquit->
                 {
+                    mainmenu.close();
+                    System.exit(0);
                    // mainmenu.setScene(sq);
                 }
         );
 
         //START
         Button begin = new Button("Start");
-        begin.setMaxWidth(200);
-        begin.setMaxHeight(200);
+        begin.setMaxWidth(900000000);
+        begin.setMaxHeight(50);
         begin.setOnAction(prof ->
                 {
                     if (active == true)
@@ -94,14 +96,7 @@ public class Menu extends Application{
                     }
                 }
         );
-        Button nope = new Button("Stop");
-        nope.setMaxWidth(200);
-        nope.setMaxHeight(200);
-        nope.setOnAction(prof ->
-                {
-                    System.out.println("I'd stop calling the xbox function here");
-                }
-        );
+
 
         //Layout 1 - children laid out in vertical column
         StackPane mmlayout = new StackPane();

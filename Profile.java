@@ -33,10 +33,9 @@ public class Profile
         Stage procreate = new Stage();
         procreate.initModality(Modality.APPLICATION_MODAL);
 
-        procreate.setMinWidth(height/2);
-        procreate.setMaxHeight(height);
-        procreate.setMinHeight(height);
-        procreate.setMaxWidth(height/2);
+        procreate.setMinWidth(height);
+        procreate.setMaxHeight(height/2);
+        procreate.setMaxWidth(height);
 
         Label prolabel = new Label("Name the profile:");
         TextField proname = new TextField();
@@ -44,14 +43,26 @@ public class Profile
 
 
         Button set = new Button("Create the profile!");
-        set.setOnAction(lam ->
-        {
-            profilename= String.valueOf(proname.getText());
-          //  System.out.println(profilename);
-            setup(profilename);
+        profilename= String.valueOf(proname.getText());
 
-            procreate.close();
-        }
+        set.setOnAction(lam ->
+            {
+
+                profilename= String.valueOf(proname.getText());
+                int plen=profilename.length();
+                if(plen > 4)
+                {
+                    System.out.println(plen);
+
+                    //  System.out.println(profilename);
+                    setup(profilename);
+                    procreate.close();
+                }
+                else
+                {
+                    prolabel.setText("Please put in a title with more than 4 characters");
+                }
+            }
         );
 
         VBox layout = new VBox(10);
