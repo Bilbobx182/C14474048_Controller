@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Fileio
 {
     public static ArrayList<String> input = new ArrayList<>();
+    public static ArrayList<String> profiles = new ArrayList<>();
 
     public void write(String profilename,String aval,String bval, String xval,String yval)
     {
@@ -41,8 +42,6 @@ public class Fileio
         try
 
         {
-
-
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String current="";
             while((current=reader.readLine()) !=null)
@@ -57,6 +56,7 @@ public class Fileio
         catch(FileNotFoundException ex)
         {
             test=false;
+            System.out.println("ERROR1");
         }
         catch(IOException ex)
         {
@@ -74,4 +74,55 @@ public class Fileio
             i++;
         }
     }
+
+    public void newappend(String filename) throws IOException
+    {
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("prolist.txt", true))))
+        {
+            System.out.println("TRYING TO PRINT");
+            out.println(filename);
+            out.close();
+            System.out.println("closed");
+        }
+        catch (IOException e)
+        {
+            System.out.println("ERROR");
+        }
+    }
+
+    public void wrpcheck()
+    {
+        profiles.clear();
+
+        BufferedReader reader = null;
+        try
+        {
+            reader = new BufferedReader(new FileReader("prolist.txt"));
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        String current="";
+        try
+        {
+            while((current=reader.readLine()) !=null)
+            {
+                profiles.add(current);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        try
+        {
+            reader.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
 }

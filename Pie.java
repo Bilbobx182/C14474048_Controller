@@ -10,11 +10,11 @@ import javafx.scene.Group;
 
 public class Pie extends Menu {
 
-    public void render()
+    public void render(String piepro)
     {
         Stage stage = new Stage();
         Scene scene = new Scene(new Group());
-        stage.setTitle(pro1.ofn + "Stats");
+        stage.setTitle(piepro+ "Stats");
 
         stage.setWidth(500);
         stage.setHeight(500);
@@ -22,12 +22,12 @@ public class Pie extends Menu {
         stage.setMinWidth(500);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-                        new PieChart.Data("(A)  "+fd.input.get(0), box.ac),
-                        new PieChart.Data("(B)  "+fd.input.get(1), box.bc),
-                        new PieChart.Data("(X)  "+fd.input.get(2), box.xc),
-                        new PieChart.Data("(Y)  "+fd.input.get(3), box.yc));
+                        new PieChart.Data("(A)"+fd.input.get(0),box.ac),
+                        new PieChart.Data("(B)"+fd.input.get(1),box.bc),
+                        new PieChart.Data("(X)"+fd.input.get(2),box.xc),
+                        new PieChart.Data("(Y)"+fd.input.get(3),box.yc));
          PieChart chart = new PieChart(data);
-        chart.setTitle( pro1.ofn );
+        chart.setTitle(  piepro );
 
         ((Group) scene.getRoot()).getChildren().add(chart);
         stage.setScene(scene);

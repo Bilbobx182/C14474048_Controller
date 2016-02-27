@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Profile
@@ -31,6 +32,7 @@ public class Profile
     public void title()
     {
         Stage procreate = new Stage();
+        procreate.setTitle("Profile setup");
         procreate.initModality(Modality.APPLICATION_MODAL);
 
         procreate.setMinWidth(height);
@@ -47,14 +49,18 @@ public class Profile
 
         set.setOnAction(lam ->
             {
-
                 profilename= String.valueOf(proname.getText());
                 int plen=profilename.length();
                 if(plen > 4)
                 {
-                    System.out.println(plen);
-
+                    //System.out.println(plen);
                     //  System.out.println(profilename);
+                    try {
+                        fd.newappend(profilename);
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
                     setup(profilename);
                     procreate.close();
                 }
@@ -76,9 +82,11 @@ public class Profile
         procreate.showAndWait();
     }
 
-    public void setup(String profilename) {
+    public void setup(String profilename)
+    {
         // ArrayList<String> binds = new ArrayList<String>();
         Stage pop = new Stage();
+        pop.setTitle("Profile setup");
         pop.initModality(Modality.APPLICATION_MODAL);
         pop.setTitle("Set values for "+profilename);
         //make it so the window is big enough to bother people.
@@ -135,6 +143,7 @@ public class Profile
     {
         Stage select = new Stage();
         select.initModality(Modality.APPLICATION_MODAL);
+        select.setTitle("Select your profile");
 
         select.setMinWidth(height/2);
         select.setMaxHeight(height);
@@ -150,7 +159,7 @@ public class Profile
         set.setOnAction(lam ->
                 {
                     String filename= String.valueOf(selname.getText());
-                  //  System.out.println(filename);
+                    System.out.println(filename);
                      ofn=filename;
                      test = fd.read(filename+".txt");
                     if(test!=true)

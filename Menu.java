@@ -11,18 +11,23 @@ import javafx.geometry.*;
 
 import java.util.ArrayList;
 
-public class Menu extends Application{
+public class Menu extends Application
+{
 
     Stage mainmenu;
     int counter=0;
     Scene sq,mm;
     Label activepro = new Label();
+    public static ArrayList<String> prolist = new ArrayList<>();
     boolean active;
+    String piepro;
 
     //Classes
     public static Profile pro1 = new Profile();
     public static Xbox box = new Xbox();
     public static Fileio fd = new Fileio();
+    public static Process pr = new Process();
+
 
     public static void main(String[] args)
     {
@@ -35,6 +40,7 @@ public class Menu extends Application{
         mainmenu = primaryStage;
         mainmenu.setOnCloseRequest(lam -> mainmenu.close());
         box.setup();
+        mainmenu.setTitle("Controller Home Screen");
 
         //new profile
         Button profile = new Button("Create new profile");
@@ -72,7 +78,6 @@ public class Menu extends Application{
                 {
                     mainmenu.close();
                     System.exit(0);
-                   // mainmenu.setScene(sq);
                 }
         );
 
@@ -82,12 +87,15 @@ public class Menu extends Application{
         begin.setMaxHeight(50);
         begin.setOnAction(prof ->
                 {
+                    Gameopen();
                     if (active == true)
                     {
                         box.setvars();
                         box.timer();
                         box.polling();
-                        pie.render();
+
+                        pie.render(piepro);
+                     //   System.out.println("YET TO BOMB OUT 4");
                         box.setvars();
                     }
                     else
@@ -107,21 +115,40 @@ public class Menu extends Application{
         StackPane.setAlignment(profile, Pos.BOTTOM_CENTER);
         StackPane.setAlignment(select, Pos.BOTTOM_LEFT);
         mm = new Scene(mmlayout, 600, 600);
-
-        Button cancel = new Button("CANCEL");
-        cancel.setOnAction(aquit->
-                {
-                    mainmenu.setScene(mm);
-                }
-        );
-
-        //Layout 2
-        StackPane quitscreen = new StackPane();
-        quitscreen.getChildren().add(cancel);
-        StackPane.setAlignment(cancel, Pos.BOTTOM_RIGHT);
         mm.getStylesheets().add("style.css");
-        sq = new Scene(quitscreen, 600, 600);
         mainmenu.setScene(mm);
         mainmenu.show();
     }
-}
+
+    void Gameopen()
+    {
+        int i=0;
+        int j=0;
+        fd.wrpcheck();
+       // System.out.println(fd.profiles.get(1));
+        // System.out.println(pr.prolist.get(1));
+
+        pr.tasklist();
+        int size=fd.profiles.size();
+
+        while(i<size)
+        {
+            for (String value : pr.prolist)
+            {
+             //   System.out.println(value);
+                if(value.contains(fd.profiles.get(i)))
+                {
+                    piepro=fd.profiles.get(i);
+                    System.out.println(piepro);
+                    activepro.setText("AUTO-DETECTED: "+piepro);
+                    fd.read(piepro+".txt");
+                    active=true;
+                    System.out.println("found it");
+                    box.setvars();
+                  }
+            }
+        i++;
+        }
+    }
+
+}//END OF CLASS
