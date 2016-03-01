@@ -186,7 +186,6 @@ public class Menu extends Application
         {
             for (String value : pr.prolist)
             {
-                //   System.out.println(value);
                 if(value.contains(fd.profiles.get(i)))
                 {
                     piepro=fd.profiles.get(i);
@@ -197,6 +196,7 @@ public class Menu extends Application
                     System.out.println("found it");
                     box.setvars();
                     auto=true;
+                    break;
                 }
             }
             i++;
