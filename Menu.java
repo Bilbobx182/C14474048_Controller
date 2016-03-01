@@ -9,25 +9,22 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
-import java.util.ArrayList;
-
 public class Menu extends Application
 {
-
     Stage mainmenu;
-    int counter=0;
-    Scene sq,mm;
-    Label activepro = new Label();
-    public static ArrayList<String> prolist = new ArrayList<>();
+    Scene mm,pm,em;
+
+
     boolean active;
     String piepro;
+    Label activepro = new Label();
+
 
     //Classes
     public static Profile pro1 = new Profile();
     public static Xbox box = new Xbox();
     public static Fileio fd = new Fileio();
     public static Process pr = new Process();
-
 
     public static void main(String[] args)
     {
@@ -42,35 +39,7 @@ public class Menu extends Application
         box.setup();
         mainmenu.setTitle("Controller Home Screen");
 
-        //new profile
-        Button profile = new Button("Create new profile");
-        profile.setOnAction(prof ->
-                {
-                    pro1.title();
-                }
-        );
-        //select
-        Button select = new Button("Select profile");
-        select.setOnAction(sel ->
-        {
-            pro1.selector();
-            String keeper=pro1.ofn;
-
-            if(pro1.test==true)
-            {
-                System.out.println("NULL CALLER");
-
-              fd.inputgetter();
-                activepro.setText("Active profile:"+keeper);
-                active=true;
-            }
-            else
-            {
-                activepro.setText("NO ACTIVE PROFILE");
-            }
-
-        });
-
+        //-------------------------------------------------------MAIN MENU BUTTONS
         Pie pie=new Pie();
         //Quit button
         Button quit = new Button("Quit");
@@ -78,6 +47,31 @@ public class Menu extends Application
                 {
                     mainmenu.close();
                     System.exit(0);
+                }
+        );
+
+        Button promenu = new Button("Profile Menu");
+        promenu.setOnAction(proif ->
+                {
+                    mainmenu.setScene(pm);
+                    mainmenu.setTitle("Controller Profile Screen");
+                }
+        );
+
+        Button etc = new Button("Other options");
+        etc.setOnAction(pm ->
+                {
+                    // mainmenu.setScene(mm);
+                }
+        );
+
+        Button b2m = new Button("Back to main menu");
+        b2m.setOnAction(pm ->
+                {
+                    mainmenu.setScene(mm);
+                    mainmenu.setTitle("Controller Home Screen");
+
+
                 }
         );
 
@@ -95,7 +89,6 @@ public class Menu extends Application
                         box.polling();
 
                         pie.render(piepro);
-                     //   System.out.println("YET TO BOMB OUT 4");
                         box.setvars();
                     }
                     else
@@ -105,17 +98,61 @@ public class Menu extends Application
                 }
         );
 
+        //-------------------------------------------------------PROFILE MENU BUTTONS
+        //new profile
+        Button profile = new Button("Create new profile");
+        profile.setOnAction(prof ->
+                {
+                    pro1.title();
+                }
+        );
 
-        //Layout 1 - children laid out in vertical column
+        //select
+        Button select = new Button("Select profile");
+        select.setOnAction(sel ->
+        {
+            pro1.selector();
+            String keeper=pro1.ofn;
+
+            if(pro1.test==true)
+            {
+                fd.inputgetter();
+                activepro.setText("Active profile:"+keeper);
+                active=true;
+            }
+            else
+            {
+                activepro.setText("NO ACTIVE PROFILE");
+            }
+
+        });
+
+        //-----------------------------------------------------------ETC MENU BUTTONS
         StackPane mmlayout = new StackPane();
-        mmlayout.getChildren().addAll(begin, profile, select, quit,activepro);
+        mmlayout.getChildren().addAll(begin,promenu,etc, quit,activepro);
+        mm = new Scene(mmlayout, 600, 600);
+
+        StackPane pmlayout = new StackPane();
+        pm = new Scene(pmlayout, 600, 600);
+        pmlayout.getChildren().addAll(select,profile,b2m);
+
+
+        //------------------------------------------------------MAIN MENU ALLIGNMENTS
         StackPane.setAlignment(begin, Pos.TOP_CENTER);
         StackPane.setAlignment(activepro,Pos.CENTER);
-        StackPane.setAlignment(quit, Pos.BOTTOM_RIGHT);
         StackPane.setAlignment(profile, Pos.BOTTOM_CENTER);
         StackPane.setAlignment(select, Pos.BOTTOM_LEFT);
-        mm = new Scene(mmlayout, 600, 600);
+        StackPane.setAlignment(quit, Pos.BOTTOM_RIGHT);
+
+        //------------------------------------------------------PROFILE ALLIGNMENTS
+        StackPane.setAlignment(promenu, Pos.BOTTOM_LEFT);
+        StackPane.setAlignment(etc, Pos.BOTTOM_CENTER);
+        StackPane.setAlignment(b2m, Pos.BOTTOM_RIGHT);
+
+
         mm.getStylesheets().add("style.css");
+        pm.getStylesheets().add("style.css");
+
         mainmenu.setScene(mm);
         mainmenu.show();
     }
@@ -125,9 +162,6 @@ public class Menu extends Application
         int i=0;
         int j=0;
         fd.wrpcheck();
-       // System.out.println(fd.profiles.get(1));
-        // System.out.println(pr.prolist.get(1));
-
         pr.tasklist();
         int size=fd.profiles.size();
 
@@ -135,7 +169,7 @@ public class Menu extends Application
         {
             for (String value : pr.prolist)
             {
-             //   System.out.println(value);
+                //   System.out.println(value);
                 if(value.contains(fd.profiles.get(i)))
                 {
                     piepro=fd.profiles.get(i);
@@ -145,9 +179,9 @@ public class Menu extends Application
                     active=true;
                     System.out.println("found it");
                     box.setvars();
-                  }
+                }
             }
-        i++;
+            i++;
         }
     }
 
