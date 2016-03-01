@@ -14,7 +14,7 @@ public class Pie extends Menu {
     {
         Stage stage = new Stage();
         Scene scene = new Scene(new Group());
-        stage.setTitle(piepro+ "Stats");
+        stage.setTitle(piepro+" Stats");
 
         stage.setWidth(500);
         stage.setHeight(500);

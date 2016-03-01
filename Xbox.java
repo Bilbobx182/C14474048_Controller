@@ -15,10 +15,10 @@ import org.lwjgl.input.Controllers;
 public class Xbox{
 
     static Controller controller;
-    static boolean a, b, x, y,back;
+    static boolean a, b, x, y,back,rb,lb;
     static boolean abo, bbo, xbo, ybo;
-    static  int ac, bc, xc, yc,backc;
-    static int height,width;
+    static  int ac, bc, xc, yc;
+    static int height,width,total;
     static boolean done;
     static long time;
     static long ctime;
@@ -29,6 +29,7 @@ public class Xbox{
         height=600;
         width=height/2;
         time=0;
+        total=0;
 
     }
 
@@ -104,7 +105,10 @@ public class Xbox{
             b = controller.isButtonPressed(1);
             x = controller.isButtonPressed(2);
             y = controller.isButtonPressed(3);
+            rb=controller.isButtonPressed(4);
+            lb=controller.isButtonPressed(5);
             back=controller.isButtonPressed(6);
+
 
             //checking the state and which button is active.
         //    System.out.println();
@@ -124,27 +128,40 @@ public class Xbox{
             {
                 ybo=true;
             }
+            if(rb)
+            {
+             //   rbo=true;
+            }
+            if(lb)
+            {
+       //       lbo=true;
+            }
+
             //incrementing for each time a button is pressed.
             if(abo==true &&a==false)
             {
                 abo=false;
                 ac++;
+                total++;
             }
             if(bbo==true &&b ==false)
             {
                 bbo=false;
                 bc++;
+                total++;
             }
 
             if(xbo==true &&x ==false)
             {
                 xbo=false;
                 xc++;
+                total++;
             }
             if(ybo==true && y ==false)
             {
                 ybo=false;
                 yc++;
+                total++;
             }
 
           //  System.out.println(ac);

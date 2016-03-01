@@ -15,9 +15,11 @@ public class Menu extends Application
     Scene mm,pm,em;
 
 
+    boolean auto=false;
     boolean active;
     String piepro;
     Label activepro = new Label();
+    int minbuttonpress=6;
 
 
     //Classes
@@ -25,6 +27,7 @@ public class Menu extends Application
     public static Xbox box = new Xbox();
     public static Fileio fd = new Fileio();
     public static Process pr = new Process();
+    Pbox pb = new Pbox();
 
     public static void main(String[] args)
     {
@@ -88,8 +91,21 @@ public class Menu extends Application
                         box.timer();
                         box.polling();
 
-                        pie.render(piepro);
-                        box.setvars();
+
+                        if(box.total > minbuttonpress)
+                        {
+                            if (auto == true) {
+                                pie.render(piepro);
+                                box.setvars();
+                            } else {
+                                pie.render(pro1.ofn);
+                                box.setvars();
+                            }
+                        }
+                        else
+                        {
+                            pb.warning("BUTTON ERROR","Please press the buttons more for better graphs :( ");
+                        }
                     }
                     else
                     {
@@ -157,6 +173,7 @@ public class Menu extends Application
         mainmenu.show();
     }
 
+
     void Gameopen()
     {
         int i=0;
@@ -179,6 +196,7 @@ public class Menu extends Application
                     active=true;
                     System.out.println("found it");
                     box.setvars();
+                    auto=true;
                 }
             }
             i++;
