@@ -5,9 +5,14 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.geometry.*;
+
+import java.util.Random;
+import java.util.Stack;
 
 public class Menu extends Application
 {
@@ -20,6 +25,8 @@ public class Menu extends Application
     String piepro;
     Label activepro = new Label();
     int minbuttonpress=6;
+    int res,max;
+    Label randompro = new Label();
 
 
     //Classes
@@ -27,6 +34,7 @@ public class Menu extends Application
     public static Xbox box = new Xbox();
     public static Fileio fd = new Fileio();
     public static Process pr = new Process();
+    Random gen = new Random();
     Pbox pb = new Pbox();
 
     public static void main(String[] args)
@@ -58,6 +66,10 @@ public class Menu extends Application
                 {
                     mainmenu.setScene(pm);
                     mainmenu.setTitle("Controller Profile Screen");
+                    max= fd.profiles.size();
+                   res = gen.nextInt(max);
+
+
                 }
         );
 
@@ -73,7 +85,8 @@ public class Menu extends Application
                 {
                     mainmenu.setScene(mm);
                     mainmenu.setTitle("Controller Home Screen");
-
+                    res = gen.nextInt(max);
+                    randompro.setText(fd.profiles.get(res)+'\r' +"Is a profile you have");
 
                 }
         );
@@ -123,6 +136,16 @@ public class Menu extends Application
                 }
         );
 
+        // load the image
+        Image image = new Image("slate.png");
+
+        // simple displays ImageView the image as is
+        ImageView logo = new ImageView();
+        logo.setImage(image);
+
+        ImageView logo2 = new ImageView();
+        logo2.setImage(image);
+
         //select
         Button select = new Button("Select profile");
         select.setOnAction(sel ->
@@ -143,14 +166,20 @@ public class Menu extends Application
 
         });
 
+
+        fd.wrpcheck();
+        max= fd.profiles.size();
+        res = gen.nextInt(max);
+        randompro.setText(fd.profiles.get(res)+'\r' +"Is a profile you have");
+
         //-----------------------------------------------------------ETC MENU BUTTONS
         StackPane mmlayout = new StackPane();
-        mmlayout.getChildren().addAll(begin,promenu,etc, quit,activepro);
+        mmlayout.getChildren().addAll(logo,begin,promenu,etc, quit,activepro);
         mm = new Scene(mmlayout, 600, 600);
 
         StackPane pmlayout = new StackPane();
         pm = new Scene(pmlayout, 600, 600);
-        pmlayout.getChildren().addAll(select,profile,b2m);
+        pmlayout.getChildren().addAll(logo2,select,profile,b2m,randompro);
 
 
         //------------------------------------------------------MAIN MENU ALLIGNMENTS
@@ -163,6 +192,7 @@ public class Menu extends Application
         //------------------------------------------------------PROFILE ALLIGNMENTS
         StackPane.setAlignment(promenu, Pos.BOTTOM_LEFT);
         StackPane.setAlignment(etc, Pos.BOTTOM_CENTER);
+        StackPane.setAlignment(randompro, Pos.CENTER);
         StackPane.setAlignment(b2m, Pos.BOTTOM_RIGHT);
 
 

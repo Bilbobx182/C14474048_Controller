@@ -19,3 +19,4 @@ v.0.1.8		Added in game auto detection(as long as a profile for that game exists)
 V.0.1.9		Added in multiple screens to make everything nicer. Forced users to have profiles greater than 4 characters.
 V.0.2.0		Fixed bug when selecting a profile it'd be null. Made it so more buttons need to be pressed to graph.
 V.0.2.1		Fixed bug when auto detecting game then auto detecting another game broke it. 
+V.0.2.2		Added in sample background for testing, also added testing possible profiles label.
