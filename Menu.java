@@ -1,6 +1,5 @@
 package root;
 
-import com.sun.javafx.css.StyleManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +11,6 @@ import javafx.stage.Stage;
 import javafx.geometry.*;
 
 import java.util.Random;
-import java.util.Stack;
 
 public class Menu extends Application
 {
@@ -98,6 +96,7 @@ public class Menu extends Application
         begin.setOnAction(prof ->
                 {
                     Gameopen();
+
                     if (active == true)
                     {
                         box.setvars();
@@ -216,6 +215,7 @@ public class Menu extends Application
         int j=0;
         fd.wrpcheck();
         pr.tasklist();
+
         int size=fd.profiles.size();
 
         while(i<size)
@@ -232,7 +232,12 @@ public class Menu extends Application
                     System.out.println("found it");
                     box.setvars();
                     auto=true;
+                    pr.prolist.clear();
                     break;
+                }
+                else
+                {
+                    active=false;
                 }
             }
             i++;

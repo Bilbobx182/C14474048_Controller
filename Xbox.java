@@ -179,7 +179,6 @@ public class Xbox{
             if(ctime>=tstart)
             {
                 done=true;
-                monitor();
             }
         }
     }
@@ -196,25 +195,36 @@ public class Xbox{
         entertime.setMaxWidth(height/2);
 
         Label ta= new Label("Timer amount in minutes:");
-        TextField tl = new TextField();
-        tl.setPromptText("5");
+        TextField timefiled = new TextField();
+        timefiled.setPromptText("5");
 
         Button set = new Button("Start timer");
         set.setOnAction(lam ->
                 {
-                    time=Integer.valueOf(tl.getText());
-                    //get the current system time they start the box
-                    time=time*60000; //make it into MS for the timer
+                    if (timefiled.getText()==null||timefiled.getText().trim().isEmpty())
+                    {
+                        time=999999999;
+                        time = time * 60000;
+                        tstart = System.currentTimeMillis();
+                        tstart = time + tstart;
+                        entertime.close();
+                    }
+                    else
+                    {
+                        time = Integer.valueOf(timefiled.getText());
+                        //get the current system time they start the box
+                        time = time * 60000; //make it into MS for the timer
 
-                    //tstart now has the value of the system time when it all should end.
-                    tstart = System.currentTimeMillis();
-                    tstart=time+tstart;
-                    entertime.close();
+                        //tstart now has the value of the system time when it all should end.
+                        tstart = System.currentTimeMillis();
+                        tstart = time + tstart;
+                        entertime.close();
+                    }
                 }
         );
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(ta,tl,set);
+        layout.getChildren().addAll(ta,timefiled,set);
         layout.setAlignment(Pos.CENTER);
 
         //Display window and wait for it to be closed before returning
