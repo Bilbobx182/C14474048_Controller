@@ -15,7 +15,7 @@ public class Fileio
         PrintWriter writer = null;
         try
         {
-            writer = new PrintWriter(profilename+".txt", "UTF-8");
+            writer = new PrintWriter("files\\"+profilename+".txt", "UTF-8");
         }
         catch (FileNotFoundException e)
         {
@@ -33,16 +33,14 @@ public class Fileio
         writer.close();
     }
 
-    String line;
     public boolean read(String filename)
     {
-        Menu menu = new Menu();
         boolean test;
         int i=0;
         try
 
         {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            BufferedReader reader = new BufferedReader(new FileReader("files\\"+filename));
             String current="";
             while((current=reader.readLine()) !=null)
             {
@@ -77,7 +75,7 @@ public class Fileio
 
     public void newappend(String filename) throws IOException
     {
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("prolist.txt", true))))
+        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("files\\"+"prolist.txt", true))))
         {
             System.out.println("TRYING TO PRINT");
             out.println(filename);
@@ -97,7 +95,7 @@ public class Fileio
         BufferedReader reader = null;
         try
         {
-            reader = new BufferedReader(new FileReader("prolist.txt"));
+            reader = new BufferedReader(new FileReader("files\\"+"prolist.txt"));
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();

@@ -23,3 +23,4 @@ V.0.2.2		Added in sample background for testing, also added testing possible pro
 V.0.2.3		Made Piechart relative to screen, changed position of label. Added map function.
 V.0.2.4		Changed variable types, X,Y,A,B are now mapped in the piechart as to 100%. Fixed bug where it wouldn't allow you to go again after not pressing enough buttons for graph. Piechart also displays % when clicked.
 V.0.2.5		Fixed a bunch of bugs, including but not limited to, profile auto detection breaking when switching games. Program breaking when they attempt to start with no time. Program now stops detecting games that were once active but no longer. Removed old monitor function popping up.
+V.0.2.6     Made the files go to a specific folder.
