@@ -3,7 +3,12 @@ package root;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.chart.*;
 import javafx.scene.Group;
@@ -14,12 +19,15 @@ public class Pie extends Menu {
     {
         Stage stage = new Stage();
         Scene scene = new Scene(new Group());
+        double width= scene.getWidth();
         stage.setTitle(piepro+" Stats");
 
         stage.setWidth(500);
         stage.setHeight(500);
         stage.setMinHeight(500);
         stage.setMinWidth(500);
+        float retval=map(2,0,10,0,20);
+        System.out.println(retval);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
                         new PieChart.Data("(A)"+fd.input.get(0),box.ac),
@@ -27,10 +35,38 @@ public class Pie extends Menu {
                         new PieChart.Data("(X)"+fd.input.get(2),box.xc),
                         new PieChart.Data("(Y)"+fd.input.get(3),box.yc));
          PieChart chart = new PieChart(data);
-        chart.setTitle(  piepro );
+        chart.setTitle(piepro);
 
-        ((Group) scene.getRoot()).getChildren().add(chart);
+        //the label for displaying the percentage of the button pressed.
+        final Label percendisplay = new Label();
+        percendisplay.setTextFill(Color.BLACK);
+
+        for (final PieChart.Data d : chart.getData())
+        {
+            d.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, lam ->
+            {
+                percendisplay.setTranslateX(lam.getSceneX());
+                percendisplay.setTranslateY(lam.getSceneY());
+                percendisplay.setText(String.valueOf(d.getPieValue()) + "%");
+            });
+        }
+
+        chart.setLabelLineLength(width/3);
+        chart.setLegendSide(Side.TOP);
+
+        ((Group) scene.getRoot()).getChildren().addAll(chart,percendisplay);
         stage.setScene(scene);
         stage.showAndWait();
+
+    }
+
+    float map(float value, float oldstart, float oldstop, float newstart, float newend)
+    {
+        float irange = oldstop-oldstart;
+        float dis = value-oldstart;
+        float percente = dis / irange;
+        float outRange = newend-newstart;
+
+        return newstart+(percente*outRange);
     }
 }
