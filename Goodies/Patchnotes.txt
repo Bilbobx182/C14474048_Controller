@@ -21,3 +21,4 @@ V.0.2.0		Fixed bug when selecting a profile it'd be null. Made it so more button
 V.0.2.1		Fixed bug when auto detecting game then auto detecting another game broke it. 
 V.0.2.2		Added in sample background for testing, also added testing possible profiles label.
 V.0.2.3		Made Piechart relative to screen, changed position of label. Added map function.
+V.0.2.4		Changed variable types, X,Y,A,B are now mapped in the piechart as to 100%. Fixed bug where it wouldn't allow you to go again after not pressing enough buttons for graph.

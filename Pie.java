@@ -1,9 +1,7 @@
 package root;
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -26,8 +24,12 @@ public class Pie extends Menu {
         stage.setHeight(500);
         stage.setMinHeight(500);
         stage.setMinWidth(500);
-        float retval=map(2,0,10,0,20);
-        System.out.println(retval);
+
+        box.ac=map(box.ac,0,box.total,0,100);
+        box.bc=map(box.bc,0,box.total,0,100);
+        box.yc=map(box.yc,0,box.total,0,100);
+        box.xc=map(box.xc,0,box.total,0,100);
+
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
                         new PieChart.Data("(A)"+fd.input.get(0),box.ac),
@@ -36,6 +38,7 @@ public class Pie extends Menu {
                         new PieChart.Data("(Y)"+fd.input.get(3),box.yc));
          PieChart chart = new PieChart(data);
         chart.setTitle(piepro);
+
 
         //the label for displaying the percentage of the button pressed.
         final Label percendisplay = new Label();
@@ -47,7 +50,7 @@ public class Pie extends Menu {
             {
                 percendisplay.setTranslateX(lam.getSceneX());
                 percendisplay.setTranslateY(lam.getSceneY());
-                percendisplay.setText(String.valueOf(d.getPieValue()) + "%");
+                percendisplay.setText(String.valueOf((int)d.getPieValue()) + "%"); // casting it to an int so it doesn't give an ugly decimal number
             });
         }
 

@@ -17,7 +17,7 @@ public class Xbox{
     static Controller controller;
     static boolean a, b, x, y,back,rb,lb;
     static boolean abo, bbo, xbo, ybo;
-    static  int ac, bc, xc, yc;
+    static float ac, bc, xc, yc;
     static int height,width,total;
     static boolean done;
     static long time;
@@ -37,6 +37,8 @@ public class Xbox{
     {
         ac=bc=xc=yc=0;
         done=false;
+        //POSSIBLY MAY BREAK STUFF
+        total=0;
     }
 
     public static void monitor()

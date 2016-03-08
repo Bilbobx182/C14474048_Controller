@@ -107,10 +107,13 @@ public class Menu extends Application
 
                         if(box.total > minbuttonpress)
                         {
-                            if (auto == true) {
+                            if (auto == true)
+                            {
                                 pie.render(piepro);
                                 box.setvars();
-                            } else {
+
+                            } else
+                            {
                                 pie.render(pro1.ofn);
                                 box.setvars();
                             }
@@ -118,6 +121,9 @@ public class Menu extends Application
                         else
                         {
                             pb.warning("BUTTON ERROR","Please press the buttons more for better graphs :( ");
+                            box.total=minbuttonpress+1;
+                            box.setvars();
+
                         }
                     }
                     else
