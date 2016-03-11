@@ -18,7 +18,6 @@ public class Profile
     Fileio fd = new Fileio();
     Pbox pb = new Pbox();
     String aval,bval,xval,yval,profilename;
-    ArrayList<String> list = new ArrayList<String>();
     int height;
     boolean test;
     String ofn;

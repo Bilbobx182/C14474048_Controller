@@ -12,14 +12,14 @@ import javafx.geometry.*;
 
 import java.util.Random;
 
-public class Menu extends Application
+public class Main extends Application
 {
     Stage mainmenu;
     Scene mm,pm,em;
 
 
     boolean auto=false;
-    boolean active;
+    boolean active=false;
     String piepro;
     Label activepro = new Label();
     int minbuttonpress=6;
@@ -225,7 +225,6 @@ public class Menu extends Application
                 if(value.contains(fd.profiles.get(i)))
                 {
                     piepro=fd.profiles.get(i);
-                    System.out.println(piepro);
                     activepro.setText("AUTO-DETECTED: "+piepro);
                     fd.read(piepro+".txt");
                     active=true;
@@ -239,6 +238,7 @@ public class Menu extends Application
                 {
                     active=false;
                 }
+                System.out.println(fd.profiles.get(i));
             }
             i++;
         }

@@ -66,7 +66,7 @@ public class Fileio
     public void inputgetter()
     {
         int i=0;
-        while(i<4)
+        while(i<input.size())
         {
             System.out.println(input.get(i));
             i++;

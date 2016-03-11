@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.chart.*;
 import javafx.scene.Group;
 
-public class Pie extends Menu {
+public class Pie extends Main {
 
     public void render(String piepro)
     {
