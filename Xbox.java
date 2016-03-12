@@ -37,7 +37,6 @@ public class Xbox{
     {
         ac=bc=xc=yc=0;
         done=false;
-        //POSSIBLY MAY BREAK STUFF
         total=0;
     }
 

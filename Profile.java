@@ -21,6 +21,7 @@ public class Profile
     int height;
     boolean test;
     String ofn;
+    boolean start=false;
 
     Profile()
     {
@@ -117,11 +118,40 @@ public class Profile
         Button set = new Button("Set the variables");
         set.setOnAction(lam ->
                 {
-                  //  System.out.println("VARIABLES SET");
-                    aval = String.valueOf(afield.getText());
-                    bval = String.valueOf(bfield.getText());
-                    xval = String.valueOf(xfield.getText());
-                    yval = String.valueOf(yfield.getText());
+                    if (afield.getText()==null||afield.getText().trim().isEmpty())
+                    {
+                        aval=" :( ";
+                    }
+                    else
+                    {
+                        aval = String.valueOf(afield.getText());
+                    }
+
+                    if (bfield.getText()==null||bfield.getText().trim().isEmpty())
+                    {
+                        bval=" :( ";
+                    }
+                    else
+                    {
+                        bval = String.valueOf(bfield.getText());
+                    }
+
+                    if (xfield.getText()==null||xfield.getText().trim().isEmpty())
+                    {
+                        xval=" :( ";
+                    }
+                    else
+                    {
+                        xval = String.valueOf(xfield.getText());
+                    }
+                    if (yfield.getText()==null||yfield.getText().trim().isEmpty())
+                    {
+                        yval=" :( ";
+                    }
+                    else
+                    {
+                        yval = String.valueOf(yfield.getText());
+                    }
                     fd.write(profilename,aval,bval,xval,yval);
                     pop.close();
                 }
@@ -168,6 +198,7 @@ public class Profile
                     else
                     {
                         pb.warning("Found it!", "I found your profile :) ");
+                        start=true;
                     }
                     select.close();
                 }

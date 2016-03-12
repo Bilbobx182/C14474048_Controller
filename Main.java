@@ -19,7 +19,6 @@ public class Main extends Application
 
 
     boolean auto=false;
-    boolean active=false;
     String piepro;
     Label activepro = new Label();
     int minbuttonpress=6;
@@ -65,7 +64,7 @@ public class Main extends Application
                     mainmenu.setScene(pm);
                     mainmenu.setTitle("Controller Profile Screen");
                     max= fd.profiles.size();
-                   res = gen.nextInt(max);
+                    res = gen.nextInt(max);
 
 
                 }
@@ -97,38 +96,52 @@ public class Main extends Application
                 {
                     Gameopen();
 
-                    if (active == true)
+
+                    if(pro1.start==true)
                     {
+                        if(auto==true)
+                        {
+                            activepro.setText("TAKING INPUT:"+piepro);
+                        }
+                        else
+                        {
+                            activepro.setText("TAKING INPUT:"+pro1.ofn);
+                        }
                         box.setvars();
                         box.timer();
                         box.polling();
 
 
-                        if(box.total > minbuttonpress)
+                        if (box.total > minbuttonpress)
                         {
                             if (auto == true)
                             {
+                                box.monitor();
                                 pie.render(piepro);
-                                box.setvars();
 
-                            } else
-                            {
-                                pie.render(pro1.ofn);
-                                box.setvars();
                             }
+                            else
+                            {
+                                box.monitor();
+                                fd.read(pro1.ofn + ".txt");
+                                pie.render(pro1.ofn);
+                            }
+
+                            fd.input.clear();
+                            box.setvars();
                         }
                         else
                         {
-                            pb.warning("BUTTON ERROR","Please press the buttons more for better graphs :( ");
-                            box.total=minbuttonpress+1;
+                            pb.warning("BUTTON ERROR", "Please press the buttons more for better graphs :( ");
+                            box.total = minbuttonpress + 1;
                             box.setvars();
-
                         }
                     }
                     else
                     {
-                        activepro.setText("NO ACTIVE PROFILE");
+                        activepro.setText("PLEASE SELECT A PROFILE FIRST");
                     }
+
                 }
         );
 
@@ -162,7 +175,6 @@ public class Main extends Application
             {
                 fd.inputgetter();
                 activepro.setText("Active profile:"+keeper);
-                active=true;
             }
             else
             {
@@ -185,7 +197,6 @@ public class Main extends Application
         StackPane pmlayout = new StackPane();
         pm = new Scene(pmlayout, 600, 600);
         pmlayout.getChildren().addAll(logo2,select,profile,b2m,randompro);
-
 
         //------------------------------------------------------MAIN MENU ALLIGNMENTS
         StackPane.setAlignment(begin, Pos.TOP_CENTER);
@@ -227,18 +238,15 @@ public class Main extends Application
                     piepro=fd.profiles.get(i);
                     activepro.setText("AUTO-DETECTED: "+piepro);
                     fd.read(piepro+".txt");
-                    active=true;
+
                     System.out.println("found it");
                     box.setvars();
                     auto=true;
                     pr.prolist.clear();
+                    pro1.start=true;
                     break;
                 }
-                else
-                {
-                    active=false;
-                }
-                System.out.println(fd.profiles.get(i));
+                //  System.out.println(fd.profiles.get(i));
             }
             i++;
         }
