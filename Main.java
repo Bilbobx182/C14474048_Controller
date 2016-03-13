@@ -34,7 +34,7 @@ public class Main extends Application
     public static Process pr = new Process();
     Random gen = new Random();
     Pbox pb = new Pbox();
-    public static Analstick as=new Analstick();
+
 
     public static void main(String[] args)
     {
@@ -51,6 +51,7 @@ public class Main extends Application
 
         //-------------------------------------------------------MAIN MENU BUTTONS
         Pie pie=new Pie();
+       Analstick as=new Analstick();
         //Quit button
         Button quit = new Button("Quit");
         quit.setOnAction(aquit->
@@ -75,7 +76,7 @@ public class Main extends Application
         Button etc = new Button("Other options");
         etc.setOnAction(pm ->
                 {
-                   as.analmap("HI");
+
                 }
         );
 
@@ -120,6 +121,7 @@ public class Main extends Application
                             {
                                 box.monitor();
                                 pie.render(piepro);
+                                as.analmap(piepro);
 
                             }
                             else
@@ -127,6 +129,7 @@ public class Main extends Application
                                 box.monitor();
                                 fd.read(pro1.ofn + ".txt");
                                 pie.render(pro1.ofn);
+                                as.analmap(pro1.ofn);
                             }
 
                             fd.input.clear();

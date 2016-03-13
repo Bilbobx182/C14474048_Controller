@@ -29,7 +29,7 @@ public class Xbox{
         done=a=b=x=y=false;
         height=600;
         width=height/2;
-        time=0;
+        lal=lar=lau=lad=ral=rar=rad=rau=time=0;
         total=0;
         lau=lal=-1; //because for the first time it counts as 2 for some reason.
 
@@ -44,6 +44,7 @@ public class Xbox{
 
     public static void monitor()
     {
+
         //gui for basic stats like amount of times pressed.
         Stage live = new Stage();
         live.initModality(Modality.APPLICATION_MODAL);
@@ -103,6 +104,7 @@ public class Xbox{
     {
         while (done != true)
         {
+            System.out.println(lau+lal+ral+rau);
             controller.poll();
             a = controller.isButtonPressed(0);
             b = controller.isButtonPressed(1);
@@ -158,6 +160,25 @@ public class Xbox{
             {
                 laub=true;
             }
+            // RIGHT ANALOGUE EVENTS
+            if(controller.getAxisValue(3)>.70)
+            {
+                rarb=true;
+            }
+
+            if(controller.getAxisValue(3)<=-0.70)
+            {
+                ralb=true;
+            }
+            if(controller.getAxisValue(2)>.70)
+            {
+                radb=true;
+            }
+
+            if(controller.getAxisValue(2)<=-0.70)
+            {
+                raub=true;
+            }
 
             //incrementing for each time Controller goes.
             //Left Analogue RIGHT
@@ -184,6 +205,33 @@ public class Xbox{
             {
                 laub=false;
                 lau++;
+            }
+
+            // RIGHT ANALOGUE COUNTERS
+            //Left Analogue RIGHT
+            if(controller.getAxisValue(3) <.70 && rarb==true)
+            {
+                rarb=false;
+                rar++;
+            }
+
+            //Left Analogue LEFT
+            if(controller.getAxisValue(3)>=-.70 && ralb==true)
+            {
+                ralb=false;
+                ral++;
+            }
+            //Left Analogue DOWN
+            if(controller.getAxisValue(2) <.70 && radb==true)
+            {
+                radb=false;
+                rad++;
+            }
+            //Left Analogue UP
+            if(controller.getAxisValue(2)>=-.70 && raub==true)
+            {
+                raub=false;
+                rau++;
             }
 
             //incrementing for each time a button is pressed.

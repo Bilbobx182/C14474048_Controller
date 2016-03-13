@@ -1,28 +1,30 @@
 package root;
 
-import javafx.geometry.Pos;
+
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.shape.Line;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 
-/**
-TESTING CLASS FOR WHEN I IMPLEMENT ANALOGUE STICKS GRAPH
- MAY BE REMOVED LATER ENTIRELY.
- */
-public class Analstick {
+public class Analstick extends Main{
 
 
     double startX,startY,endX,endY,test;
+    String GE1 = "Left";
+    String GE2 = "Right";
+    String GE3 = "Up";
+    String GE4 = "Down";
+
 
     Analstick()
     {
         startX=startY=endX=endY=0;
         test=5;
     }
+
 
     public void analmap(String name)
     {
@@ -37,24 +39,33 @@ public class Analstick {
         amap.setMinHeight(600);
         amap.setMaxWidth(600);
 
-        Line line = new Line();
-        line.setStartX(startX);
-        line.setStartY(startY);
-        line.setEndX(endX);
-        line.setEndY(endY);
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String,Number> analchart =new BarChart<>(xAxis,yAxis);
 
+        analchart.setTitle(name);
+        xAxis.setLabel("Stick name");
+        yAxis.setLabel("Times Moved");
 
+        XYChart.Series LEFT = new XYChart.Series();
+        LEFT.setName("Left Stick");
+        LEFT.getData().add(new XYChart.Data(GE1,box.lal));
+        LEFT.getData().add(new XYChart.Data(GE2,box.lar));
+        LEFT.getData().add(new XYChart.Data(GE3,box.lau));
+        LEFT.getData().add(new XYChart.Data(GE4,box.lad));
 
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(line);
-        layout.setAlignment(Pos.CENTER);
+        XYChart.Series RIGHT= new XYChart.Series();
+        RIGHT.setName("Right Stick");
+        RIGHT.getData().add(new XYChart.Data(GE1,box.ral));
+        RIGHT.getData().add(new XYChart.Data(GE2,box.rar));
+        RIGHT.getData().add(new XYChart.Data(GE3,box.rau));
+        RIGHT.getData().add(new XYChart.Data(GE4,box.rad));
 
-        //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
+        Scene scene  = new Scene(analchart,600,600);
+        analchart.getData().addAll(LEFT,RIGHT);
         amap.setScene(scene);
+
         scene.getStylesheets().add("style.css");
         amap.show();
-
-
     }
 }
