@@ -11,13 +11,14 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
 
-
 public class Xbox{
 
     static Controller controller;
-    static boolean a, b, x, y,back,rb,lb;
-    static boolean abo, bbo, xbo, ybo;
-    static float ac, bc, xc, yc;
+    static boolean a, b, x, y,back,rb,lb; //booleans to see if it's pressed at all.
+    static boolean abo, bbo, xbo, ybo; //booleans for the counters so they go up by one.
+    static float ac, bc, xc, yc;    //counters for buttons
+    static float lal,lar,lau,lad,ral,rar,rad,rau;//counters for Left/Right Analogue Up/Down/Left/Right
+    static boolean lalb,larb,laub,ladb,ralb,rarb,radb,raub;
     static int height,width,total;
     static boolean done;
     static long time;
@@ -30,6 +31,7 @@ public class Xbox{
         width=height/2;
         time=0;
         total=0;
+        lau=lal=-1; //because for the first time it counts as 2 for some reason.
 
     }
 
@@ -138,6 +140,52 @@ public class Xbox{
        //       lbo=true;
             }
 
+            if(controller.getAxisValue(1)>.70)
+            {
+                larb=true;
+            }
+
+            if(controller.getAxisValue(1)<=-0.70)
+            {
+                lalb=true;
+            }
+            if(controller.getAxisValue(0)>.70)
+            {
+                ladb=true;
+            }
+
+            if(controller.getAxisValue(0)<=-0.70)
+            {
+                laub=true;
+            }
+
+            //incrementing for each time Controller goes.
+            //Left Analogue RIGHT
+            if(controller.getAxisValue(1) <.70 && larb==true)
+             {
+                larb=false;
+                 lar++;
+            }
+
+            //Left Analogue LEFT
+            if(controller.getAxisValue(1)>=-.70 && lalb==true)
+            {
+                lalb=false;
+                lal++;
+            }
+            //Left Analogue DOWN
+            if(controller.getAxisValue(0) <.70 && ladb==true)
+            {
+                ladb=false;
+                lad++;
+            }
+            //Left Analogue UP
+            if(controller.getAxisValue(0)>=-.70 && laub==true)
+            {
+                laub=false;
+                lau++;
+            }
+
             //incrementing for each time a button is pressed.
             if(abo==true &&a==false)
             {
@@ -233,5 +281,16 @@ public class Xbox{
 
         entertime.showAndWait();
     }
+
+    /* EXCESS CODE THAT MAY BE USEFUL
+                System.out.print("A1 UP DOWN "+ controller.getAxisValue(0));
+            System.out.print("A1 LEFT RIGHT "+ controller.getAxisValue(1));
+            System.out.print("A2 UP DOWN "+ controller.getAxisValue(2));
+            System.out.print("A2 LEFT RIGHT "+ controller.getAxisValue(3));
+            System.out.println();
+
+           // System.out.println("LAL"+lal+"LAR"+lar);
+           // System.out.println("LAU"+lau+"LAD"+lad);
+     */
 
 }

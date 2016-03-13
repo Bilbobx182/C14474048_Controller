@@ -26,6 +26,7 @@ public class Main extends Application
     Label randompro = new Label();
 
 
+
     //Classes
     public static Profile pro1 = new Profile();
     public static Xbox box = new Xbox();
@@ -33,6 +34,7 @@ public class Main extends Application
     public static Process pr = new Process();
     Random gen = new Random();
     Pbox pb = new Pbox();
+    public static Analstick as=new Analstick();
 
     public static void main(String[] args)
     {
@@ -73,7 +75,7 @@ public class Main extends Application
         Button etc = new Button("Other options");
         etc.setOnAction(pm ->
                 {
-                    // mainmenu.setScene(mm);
+                   as.analmap("HI");
                 }
         );
 
