@@ -1,17 +1,19 @@
 package root;
 
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Profile
 {
@@ -22,11 +24,13 @@ public class Profile
     boolean test;
     String ofn;
     boolean start=false;
+    String filename;
 
     Profile()
     {
         aval=bval=xval=yval="NOTHING";
         height=600;
+
     }
 
     public void title()
@@ -38,36 +42,45 @@ public class Profile
         procreate.setMinWidth(height);
         procreate.setMaxHeight(height/2);
         procreate.setMaxWidth(height);
-
         Label prolabel = new Label("Name the profile:");
+
         TextField proname = new TextField();
         proname.setPromptText("Example is Rocket League");
 
-
         Button set = new Button("Create the profile!");
-        profilename= String.valueOf(proname.getText());
+
+        proname.setOnKeyPressed(key ->
+        {
+            if (key.getCode().equals(KeyCode.ENTER))
+            {
+                profilename= String.valueOf(proname.getText());
+                boolean fine=create();
+                if(fine ==false)
+                {
+                    prolabel.setText("Please put in a title with more than 4 characters");
+                }
+                else
+                {
+                    procreate.close();
+                }
+
+            }
+        });
+
 
         set.setOnAction(lam ->
                 {
                     profilename= String.valueOf(proname.getText());
-                    int plen=profilename.length();
-                    if(plen > 4)
-                    {
-                        //System.out.println(plen);
-                        //  System.out.println(profilename);
-                        try {
-                            fd.newappend(profilename);
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
-                        setup(profilename);
-                        procreate.close();
-                    }
-                    else
+                    boolean fine =create();
+                    if(fine ==false)
                     {
                         prolabel.setText("Please put in a title with more than 4 characters");
                     }
+                    else
+                    {
+                        procreate.close();
+                    }
+
                 }
         );
 
@@ -84,7 +97,6 @@ public class Profile
 
     public void setup(String profilename)
     {
-        // ArrayList<String> binds = new ArrayList<String>();
         Stage pop = new Stage();
         pop.setTitle("Profile setup");
         pop.initModality(Modality.APPLICATION_MODAL);
@@ -178,29 +190,25 @@ public class Profile
         select.setMaxHeight(height);
         select.setMinHeight(height);
         select.setMaxWidth(height/2);
-
+        TextField selname=new TextField();
         Label sellab = new Label("Enter in the profile you want to use:");
-        TextField selname = new TextField();
         selname.setPromptText("Profile name goes here");
 
+        selname.setOnKeyPressed(key ->
+        {
+            if (key.getCode().equals(KeyCode.ENTER))
+            {
+                filename= String.valueOf(selname.getText());
+                search();
+            }
+        });
 
         Button set = new Button("Search for the profile!");
         set.setOnAction(lam ->
                 {
-                    String filename= String.valueOf(selname.getText());
-                    System.out.println(filename);
-                    ofn=filename;
-                    test = fd.read(filename+".txt");
-                    if(test!=true)
-                    {
-                        pb.warning("ERROR ON SEARCH","Sorry, your search gave me no love :( ");
-                    }
-                    else
-                    {
-                        pb.warning("Found it!", "I found your profile :) ");
-                        start=true;
-                    }
-                    select.close();
+                    filename= String.valueOf(selname.getText());
+                   search();
+                   // select.close();
                 }
         );
 
@@ -213,6 +221,50 @@ public class Profile
         proscene.getStylesheets().add("style.css");
         select.setScene(proscene);
         select.showAndWait();
+
+    }
+
+    void search()
+    {
+
+        System.out.println(filename);
+        ofn=filename;
+        test = fd.read(filename+".txt");
+        if(test!=true)
+        {
+            pb.warning("ERROR ON SEARCH","Sorry, your search gave me no love :( ");
+        }
+        else
+        {
+            pb.warning("Found it!", "I found your profile :) ");
+            start=true;
+        }
+    }
+
+    boolean create()
+    {
+       boolean fine=true;
+        int plen=profilename.length();
+        if(plen > 4)
+        {
+            try
+            {
+                fd.newappend(profilename);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            setup(profilename);
+            return fine;
+        }
+        else
+        {
+            fine=false;
+            System.out.println(fine);
+            return fine;
+        }
+
 
     }
 }

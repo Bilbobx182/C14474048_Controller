@@ -65,7 +65,6 @@ public class Xbox{
         Label xlab = new Label("X: "+xc);
         Label ylab = new Label("Y: "+yc);
 
-
         Button finish = new Button("Finish");
         finish.setOnAction(lam ->
                 {
@@ -85,7 +84,6 @@ public class Xbox{
         scene.getStylesheets().add("style.css");
         live.showAndWait();
     }
-
 
     public static void setup()
     {
@@ -288,6 +286,7 @@ public class Xbox{
     {
         Slider Timelen = new Slider();
         Stage entertime = new Stage();
+        entertime.setTitle("Select the time");
         entertime.initModality(Modality.APPLICATION_MODAL);
 
         entertime.setMinWidth(height);

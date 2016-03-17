@@ -9,15 +9,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-public class Analstick extends Main{
-
+public class Analstick extends Main
+{
 
     double startX,startY,endX,endY,test;
     String GE1 = "Left";
     String GE2 = "Right";
     String GE3 = "Up";
     String GE4 = "Down";
-
 
     Analstick()
     {

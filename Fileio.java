@@ -9,6 +9,7 @@ public class Fileio
 {
     public static ArrayList<String> input = new ArrayList<>();
     public static ArrayList<String> profiles = new ArrayList<>();
+    Pbox pb= new Pbox();
 
     public void write(String profilename,String aval,String bval, String xval,String yval)
     {
@@ -54,7 +55,6 @@ public class Fileio
         catch(FileNotFoundException ex)
         {
             test=false;
-            System.out.println("ERROR1");
         }
         catch(IOException ex)
         {
@@ -84,7 +84,7 @@ public class Fileio
         }
         catch (IOException e)
         {
-            System.out.println("ERROR");
+            pb.warning("FILE ERROR","Oooopps, something went wrong appending, please email me");
         }
     }
 

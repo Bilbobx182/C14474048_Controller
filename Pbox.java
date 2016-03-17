@@ -21,7 +21,6 @@ public class Pbox{
         pop.setMinHeight(600);
         pop.setMaxWidth(600);
 
-
         Label label = new Label();
         label.setText(text);
 

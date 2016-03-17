@@ -20,6 +20,7 @@ public class Pie extends Main {
         double width= scene.getWidth();
         stage.setTitle(piepro+" Stats");
 
+
         stage.setWidth(500);
         stage.setHeight(500);
         stage.setMinHeight(500);
@@ -50,7 +51,7 @@ public class Pie extends Main {
             {
                 percendisplay.setTranslateX(lam.getSceneX());
                 percendisplay.setTranslateY(lam.getSceneY());
-                percendisplay.setText(String.valueOf(d.getPieValue()) + "%"); // casting it to an int so it doesn't give an ugly decimal number
+                percendisplay.setText(String.valueOf(d.getPieValue()) + "%");
             });
         }
 

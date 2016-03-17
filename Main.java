@@ -6,8 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -97,7 +95,6 @@ public class Main extends Application
                     mainmenu.setTitle("Controller Home Screen");
                     res = gen.nextInt(max);
                     randompro.setText(fd.profiles.get(res)+'\r' +"Is a profile you have");
-
                 }
         );
 
@@ -218,7 +215,7 @@ public class Main extends Application
     void Gameopen()
     {
         int i=0;
-        int j=0;
+        //Checking to see if a game that the user set a profile for is created.
         fd.wrpcheck();
         pr.tasklist();
 
@@ -230,11 +227,14 @@ public class Main extends Application
             {
                 if(value.contains(fd.profiles.get(i)))
                 {
+                    //sets the string piepro to the profile found
                     piepro=fd.profiles.get(i);
+                    //adds a small glowing effect to it
                     activepro.setEffect(new Glow(0.3));
                     activepro.setText("AUTO-DETECTED: "+piepro);
+
                     fd.read(piepro+".txt");
-                    active=true;
+                    active=true;//sets the auto detect to true.
                     System.out.println("found it");
                     box.setvars();
                     auto=true;
@@ -243,6 +243,7 @@ public class Main extends Application
                 }
                 else
                 {
+                    //setting the value to false so it never gets confused.
                     active=false;
                 }
             }
