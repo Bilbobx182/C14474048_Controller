@@ -37,7 +37,7 @@ public class Xbox{
         width=height/2;
         lal=lar=lau=lad=ral=rar=rad=rau=time=0;
         temptimer=total=0;
-        lau=lal=-1; //because for the first time it counts as 2 for some reason.
+        lau=lal=0; //because for the first time it counts as 2 for some reason.
     }
 
     public static void setvars()
@@ -45,6 +45,7 @@ public class Xbox{
         ac=bc=xc=yc=0;
         done=false;
         total=0;
+        lal=lar=lau=lad=ral=rar=rad=rau=0;
     }
 
     public static void monitor()
@@ -106,6 +107,7 @@ public class Xbox{
     }
     public static void polling()
     {
+
         while (done != true)
         {
             controller.poll();
@@ -344,6 +346,17 @@ public class Xbox{
         entertime.setScene(scene);
 
         entertime.showAndWait();
+    }
+
+    void statepoll()
+    {
+        ///checks the state to make sure the anal sticks are fine if not sets the values to 0.
+        controller.poll();
+        if(lau!=0) {lau=0;}
+        if(lal!=0) {lal=0;}
+        if(rau!=0) {rau=0;}
+        if(ral!=0) {ral=0;}
+
     }
 
     /* EXCESS CODE THAT MAY BE USEFUL

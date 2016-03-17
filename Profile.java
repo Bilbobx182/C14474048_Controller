@@ -120,7 +120,7 @@ public class Profile
                 {
                     if (afield.getText()==null||afield.getText().trim().isEmpty())
                     {
-                        aval=" :( ";
+                        aval="";
                     }
                     else
                     {
@@ -129,7 +129,7 @@ public class Profile
 
                     if (bfield.getText()==null||bfield.getText().trim().isEmpty())
                     {
-                        bval=" :( ";
+                        bval="";
                     }
                     else
                     {
@@ -138,7 +138,7 @@ public class Profile
 
                     if (xfield.getText()==null||xfield.getText().trim().isEmpty())
                     {
-                        xval=" :( ";
+                        xval=" ";
                     }
                     else
                     {
@@ -146,7 +146,7 @@ public class Profile
                     }
                     if (yfield.getText()==null||yfield.getText().trim().isEmpty())
                     {
-                        yval=" :( ";
+                        yval=" ";
                     }
                     else
                     {

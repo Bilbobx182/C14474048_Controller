@@ -4,9 +4,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
@@ -48,6 +51,12 @@ public class Main extends Application
         box.setup();
         mainmenu.setTitle("Controller Home Screen");
 
+        //EFFECTS
+        InnerShadow shadow = new InnerShadow();
+        shadow.setOffsetX(4);
+        shadow.setOffsetY(4);
+        shadow.setColor(Color.web("0x3b596d"));
+
         //-------------------------------------------------------MAIN MENU BUTTONS
         Pie pie=new Pie();
         //Quit button
@@ -74,7 +83,10 @@ public class Main extends Application
         Button etc = new Button("Other options");
         etc.setOnAction(pm ->
                 {
-                    // mainmenu.setScene(mm);
+                    pb.warning("About the program/Dev","Hi this program was written by Ciaran Ó Nuallain. \n" +
+                            "I did this for my 2nd year end of year assignment. \n" +
+                            "\n" +
+                            "A hidden tip is: Hitting \"select\" will stop the timer");
                 }
         );
 
@@ -92,21 +104,24 @@ public class Main extends Application
         //START
         Analstick as=new Analstick();
         Button begin = new Button("Start");
+        begin.setEffect(new Glow(0.25));
         begin.setMaxWidth(900000000);
         begin.setMaxHeight(50);
         begin.setOnAction(prof ->
                 {
                     Gameopen();
 
-                    if (active == true)
+                    if (active == true || pro1.start==true)
                     {
                         box.setvars();
                         box.timer();
+                        box.statepoll();
                         box.polling();
 
 
                         if(box.total > minbuttonpress)
                         {
+
                             if (auto == true)
                             {
                                 pie.render(piepro);
@@ -216,6 +231,7 @@ public class Main extends Application
                 if(value.contains(fd.profiles.get(i)))
                 {
                     piepro=fd.profiles.get(i);
+                    activepro.setEffect(new Glow(0.3));
                     activepro.setText("AUTO-DETECTED: "+piepro);
                     fd.read(piepro+".txt");
                     active=true;
