@@ -1,13 +1,10 @@
 package root;
 
-
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,7 +27,6 @@ public class Profile
     {
         aval=bval=xval=yval="NOTHING";
         height=600;
-
     }
 
     public void title()
@@ -200,6 +196,7 @@ public class Profile
             {
                 filename= String.valueOf(selname.getText());
                 search();
+                select.close();
             }
         });
 
@@ -208,7 +205,7 @@ public class Profile
                 {
                     filename= String.valueOf(selname.getText());
                    search();
-                   // select.close();
+                   select.close();
                 }
         );
 
