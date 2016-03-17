@@ -48,27 +48,27 @@ public class Profile
         profilename= String.valueOf(proname.getText());
 
         set.setOnAction(lam ->
-            {
-                profilename= String.valueOf(proname.getText());
-                int plen=profilename.length();
-                if(plen > 4)
                 {
-                    //System.out.println(plen);
-                    //  System.out.println(profilename);
-                    try {
-                        fd.newappend(profilename);
-                    } catch (IOException e)
+                    profilename= String.valueOf(proname.getText());
+                    int plen=profilename.length();
+                    if(plen > 4)
                     {
-                        e.printStackTrace();
+                        //System.out.println(plen);
+                        //  System.out.println(profilename);
+                        try {
+                            fd.newappend(profilename);
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        setup(profilename);
+                        procreate.close();
                     }
-                    setup(profilename);
-                    procreate.close();
+                    else
+                    {
+                        prolabel.setText("Please put in a title with more than 4 characters");
+                    }
                 }
-                else
-                {
-                    prolabel.setText("Please put in a title with more than 4 characters");
-                }
-            }
         );
 
         VBox layout = new VBox(10);
@@ -189,8 +189,8 @@ public class Profile
                 {
                     String filename= String.valueOf(selname.getText());
                     System.out.println(filename);
-                     ofn=filename;
-                     test = fd.read(filename+".txt");
+                    ofn=filename;
+                    test = fd.read(filename+".txt");
                     if(test!=true)
                     {
                         pb.warning("ERROR ON SEARCH","Sorry, your search gave me no love :( ");

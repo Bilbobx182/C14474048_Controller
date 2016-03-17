@@ -25,9 +25,9 @@ public class Analstick extends Main{
         test=5;
     }
 
-
     public void analmap(String name)
     {
+
         Stage amap = new Stage();
 
         amap.initModality(Modality.APPLICATION_MODAL);
@@ -42,6 +42,9 @@ public class Analstick extends Main{
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         BarChart<String,Number> analchart =new BarChart<>(xAxis,yAxis);
+        //for CSS
+        analchart.setId("ACHART");
+     ;
 
         analchart.setTitle(name);
         xAxis.setLabel("Stick name");
@@ -62,10 +65,10 @@ public class Analstick extends Main{
         RIGHT.getData().add(new XYChart.Data(GE4,box.rad));
 
         Scene scene  = new Scene(analchart,600,600);
+
         analchart.getData().addAll(LEFT,RIGHT);
         amap.setScene(scene);
 
-        scene.getStylesheets().add("style.css");
         amap.show();
     }
 }

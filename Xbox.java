@@ -4,12 +4,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Glow;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
+import javafx.scene.control.Slider;
+
+
+
 
 public class Xbox{
 
@@ -23,6 +28,7 @@ public class Xbox{
     static boolean done;
     static long time;
     static long ctime;
+    static double temptimer;
 
     Xbox()
     {
@@ -30,9 +36,8 @@ public class Xbox{
         height=600;
         width=height/2;
         lal=lar=lau=lad=ral=rar=rad=rau=time=0;
-        total=0;
+        temptimer=total=0;
         lau=lal=-1; //because for the first time it counts as 2 for some reason.
-
     }
 
     public static void setvars()
@@ -44,7 +49,6 @@ public class Xbox{
 
     public static void monitor()
     {
-
         //gui for basic stats like amount of times pressed.
         Stage live = new Stage();
         live.initModality(Modality.APPLICATION_MODAL);
@@ -104,7 +108,6 @@ public class Xbox{
     {
         while (done != true)
         {
-            System.out.println(lau+lal+ral+rau);
             controller.poll();
             a = controller.isButtonPressed(0);
             b = controller.isButtonPressed(1);
@@ -116,7 +119,7 @@ public class Xbox{
 
 
             //checking the state and which button is active.
-        //    System.out.println();
+            //    System.out.println();
             if(a)
             {
                 abo=true;
@@ -135,11 +138,11 @@ public class Xbox{
             }
             if(rb)
             {
-             //   rbo=true;
+                //   rbo=true;
             }
             if(lb)
             {
-       //       lbo=true;
+                //       lbo=true;
             }
 
             if(controller.getAxisValue(1)>.70)
@@ -183,9 +186,9 @@ public class Xbox{
             //incrementing for each time Controller goes.
             //Left Analogue RIGHT
             if(controller.getAxisValue(1) <.70 && larb==true)
-             {
+            {
                 larb=false;
-                 lar++;
+                lar++;
             }
 
             //Left Analogue LEFT
@@ -261,7 +264,7 @@ public class Xbox{
                 total++;
             }
 
-          //  System.out.println(ac);
+            //  System.out.println(ac);
             if(back)
             {
                 done=true;
@@ -281,45 +284,58 @@ public class Xbox{
     static long tstart;
     public static void timer()
     {
+        Slider Timelen = new Slider();
         Stage entertime = new Stage();
         entertime.initModality(Modality.APPLICATION_MODAL);
 
-        entertime.setMinWidth(height/2);
-        entertime.setMaxHeight(height);
+        entertime.setMinWidth(height);
+        entertime.setMaxHeight(height*2);
         entertime.setMinHeight(height);
-        entertime.setMaxWidth(height/2);
+        entertime.setMaxWidth(height*2);
 
-        Label ta= new Label("Timer amount in minutes:");
-        TextField timefiled = new TextField();
-        timefiled.setPromptText("5");
+        int major,minor,increment,MAXMIN,MINMIN;
+        major=15;
+        MAXMIN=60;
+        MINMIN=0;
+        increment=5;
+        minor=major%increment;
+
+        if(minor==0)
+        {
+            minor=1;
+        }
+
+        Label timelable= new Label("Select how long you want:");
+        Timelen.setMin(MINMIN);
+        Timelen.setEffect(new Glow(0.4));
+        Timelen.setMax(MAXMIN);
+        Timelen.setValue(20);
+        Timelen.setShowTickLabels(true);
+        Timelen.setSnapToTicks(true);
+        Timelen.setShowTickMarks(true);
+        Timelen.setMajorTickUnit(major);
+        Timelen.setBlockIncrement(increment);
+        Timelen.setMinorTickCount(minor);
+
 
         Button set = new Button("Start timer");
+        set.setEffect(new Glow(0.1));
         set.setOnAction(lam ->
                 {
-                    if (timefiled.getText()==null||timefiled.getText().trim().isEmpty())
-                    {
-                        time=999999999;
-                        time = time * 60000;
-                        tstart = System.currentTimeMillis();
-                        tstart = time + tstart;
-                        entertime.close();
-                    }
-                    else
-                    {
-                        time = Integer.valueOf(timefiled.getText());
-                        //get the current system time they start the box
-                        time = time * 60000; //make it into MS for the timer
-
-                        //tstart now has the value of the system time when it all should end.
-                        tstart = System.currentTimeMillis();
-                        tstart = time + tstart;
-                        entertime.close();
-                    }
+                    temptimer=(Timelen.getValue());
+                    time=(long)temptimer;
+                    System.out.println(time);
+                    //get the current system time they start the box
+                    time = time * 60000; //make it into MS for the timer
+                    //tstart now has the value of the system time when it all should end.
+                    tstart = System.currentTimeMillis();
+                    tstart = time + tstart;
+                    entertime.close();
                 }
         );
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(ta,timefiled,set);
+        layout.getChildren().addAll(timelable,Timelen,set);
         layout.setAlignment(Pos.CENTER);
 
         //Display window and wait for it to be closed before returning

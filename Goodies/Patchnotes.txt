@@ -29,3 +29,4 @@ V.0.2.8		Fixed bug that made it read in previous profile data, re implemented ba
 V.0.2.9  	Displaying text to user when the program is taking in input so they don't think it froze. Also dealt with blank user input.
 V.0.3.0		Left analogue stick counter now implemented. Class created for AnalogueStick(Analstick) graphing later on.
 V.0.3.1 	Implemented Analogue stick graph. Minor bugs involved.
+V.0.3.2		Changed text inputting a timer to a slider. Stopping user error. Added a glowing effect to it.
