@@ -24,12 +24,12 @@ public class Pie extends Main {
         stage.setHeight(500);
         stage.setMinHeight(500);
         stage.setMinWidth(500);
+        fixvars();
 
         box.ac=map(box.ac,0,box.total,0,100);
         box.bc=map(box.bc,0,box.total,0,100);
         box.yc=map(box.yc,0,box.total,0,100);
         box.xc=map(box.xc,0,box.total,0,100);
-
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
                         new PieChart.Data("(A)"+fd.input.get(0),box.ac),
@@ -50,7 +50,7 @@ public class Pie extends Main {
             {
                 percendisplay.setTranslateX(lam.getSceneX());
                 percendisplay.setTranslateY(lam.getSceneY());
-                percendisplay.setText(String.valueOf((int)d.getPieValue()) + "%"); // casting it to an int so it doesn't give an ugly decimal number
+                percendisplay.setText(String.valueOf(d.getPieValue()) + "%"); // casting it to an int so it doesn't give an ugly decimal number
             });
         }
 
@@ -72,4 +72,14 @@ public class Pie extends Main {
 
         return newstart+(percente*outRange);
     }
+
+
+        void fixvars()
+        {
+            box.ac=Math.round(box.ac);
+            box.bc=Math.round(box.bc);
+            box.xc=Math.round(box.xc);
+            box.yc=Math.round(box.yc);
+        }
+
 }
