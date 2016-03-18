@@ -1,22 +1,30 @@
 .root
 {
-    -fx-font-size: 13pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-base: #FFFF00;
+    -fx-font-size: 16pt;
+    -fx-font-family: "Coolvetica Rg";
+    -fx-base: #4C4C4C;
     -fx-stroke: #b2bfc8;
     -fx-background: #4C4C4C;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
 }
 
 .button
 {
+    -fx-font-size: 15pt;
     -fx-base:#ffa500;
-    -fx-stroke-dash-offset: 3;
+    -fx-stroke-dash-offset: 12;
+    -fx-snap-to-pixel: true;
 }
 
 .label
 {
-    -fx-font-size: 13pt;
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill:#FFFF00;
-    -fx-opacity: 0.6;
+    -fx-text-fill: #b2bfc8;
 }
+
+
+

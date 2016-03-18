@@ -34,3 +34,4 @@ V.0.3.3		Fixed bug where it wouldn't allow non auto detected profiles. Put dev i
 V.0.3.4		Made the pie chart more accurate so it is always 100% now.
 V.0.3.5		Made it so you can hit the Enter key and it will accept the input of certain text fields(Create and search).
 V.0.3.5.2	Fixed minor bug where it wouldn't close the window after an enter key search.
+V.0.3.6		Made it so I have counters for 2 button combos. Sorta working not fully. 
