@@ -128,7 +128,7 @@ public class Profile
                 {
                     if (afield.getText()==null||afield.getText().trim().isEmpty())
                     {
-                        aval="NOTHING";
+                        aval="Null";
                     }
                     else
                     {
@@ -137,7 +137,7 @@ public class Profile
 
                     if (bfield.getText()==null||bfield.getText().trim().isEmpty())
                     {
-                        bval="NOTHING";
+                        bval="Null";
                     }
                     else
                     {
@@ -146,7 +146,7 @@ public class Profile
 
                     if (xfield.getText()==null||xfield.getText().trim().isEmpty())
                     {
-                        xval="NOTHING";
+                        xval="Null";
                     }
                     else
                     {
@@ -154,7 +154,7 @@ public class Profile
                     }
                     if (yfield.getText()==null||yfield.getText().trim().isEmpty())
                     {
-                        yval="NOTHING";
+                        yval="Null";
                     }
                     else
                     {
