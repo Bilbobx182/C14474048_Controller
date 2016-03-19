@@ -484,6 +484,23 @@ public class Xbox{
 
     }
 
+    public static void varprep(float a,float b,float x,float y)
+    {
+        ac=map(ac,0,total,0,100);
+        bc=map(bc,0,total,0,100);
+        yc=map(yc,0,total,0,100);
+        xc=map(xc,0,total,0,100);
+    }
+
+   static float map(float value, float oldstart, float oldstop, float newstart, float newend)
+    {
+        float irange = oldstop-oldstart;
+        float dis = value-oldstart;
+        float percente = dis / irange;
+        float outRange = newend-newstart;
+
+        return newstart+(percente*outRange);
+    }
 
     /* EXCESS CODE THAT MAY BE USEFUL
                 System.out.print("A1 UP DOWN "+ controller.getAxisValue(0));

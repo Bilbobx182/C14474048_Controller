@@ -27,11 +27,11 @@ public class Fileio
             }
             reader.close();
         }
-        catch(FileNotFoundException PROBLEM)
+        catch(FileNotFoundException e)
         {
-        //    pb.warning("FILE ERROR","Oops, couldn't find it, please email me");
+          pb.warning("FILE ERROR","Oops, couldn't find it, please email me");
         }
-        catch(IOException PROBLEM)
+        catch(IOException e)
         {
             pb.warning("FILE ERROR","Oops, something went wrong while reading, please email me");
         }

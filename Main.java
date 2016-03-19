@@ -82,10 +82,7 @@ public class Main extends Application
         Button etc = new Button("Other options");
         etc.setOnAction(pm ->
                 {
-                    pb.warning("About the program/Dev","Hi this program was written by Ciaran Ó Nuallain. \n" +
-                            "I did this for my 2nd year end of year assignment. \n" +
-                            "\n" +
-                            "A hidden tip is: Hitting \"select\" will stop the timer");
+                    pro1.graphlist();
                 }
         );
 
@@ -115,6 +112,7 @@ public class Main extends Application
                         box.timer();
                         box.statepoll();
                         box.polling();
+                        box.varprep();
 
 
                         if(box.total > minbuttonpress)
@@ -123,12 +121,12 @@ public class Main extends Application
                             if (auto == true)
                             {
                                fd.writestats(piepro,box.ac,box.bc,box.xc,box.yc);
-                                pie.render(piepro);
+                                pie.render(piepro,box.ac,box.bc,box.xc,box.yc);
                                 as.analmap(piepro);
                             } else
                             {
                               fd.writestats(pro1.ofn,box.ac,box.bc,box.xc,box.yc);
-                                pie.render(pro1.ofn);
+                                pie.render(pro1.ofn,box.ac,box.bc,box.xc,box.yc);
                                 as.analmap(pro1.ofn);
                             }
                             box.setvars();

@@ -1,9 +1,7 @@
 package root;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -22,11 +20,17 @@ public class Profile
     String ofn;
     boolean start=false;
     String filename;
+    int combo,ab1,ab2,ab3,analogue;
 
     Profile()
     {
         aval=bval=xval=yval="NOTHING";
         height=600;
+        ab1=1;
+        ab2=3;
+        ab3=5;
+        analogue=10;
+        combo=19;//by default so all graphs will be set
     }
 
     public void title()
@@ -264,4 +268,67 @@ public class Profile
 
 
     }
+
+    void graphlist()
+    {
+        combo=0;
+        Stage gselect = new Stage();
+        gselect.initModality(Modality.APPLICATION_MODAL);
+        gselect.setTitle("Select the active graphs");
+
+        gselect.setMaxWidth(600);
+        gselect.setMaxHeight(600);
+        gselect.setMinHeight(600);
+        gselect.setMaxWidth(600);
+
+        CheckBox abxy = new CheckBox("ABXY per game piechart");
+        CheckBox abxytot = new CheckBox("Total profile ABXY piechart");
+        CheckBox abxycombo = new CheckBox("ABXY Combo piechart");
+        CheckBox anal = new CheckBox("Analogue stick barchart");
+
+        abxy.setSelected(true);
+        abxytot.setSelected(true);
+        anal.setSelected(true);
+        abxycombo.setSelected(true);
+
+
+        Button close = new Button("I am done selecting");
+        close.setOnAction(lam ->
+                {
+                    if(abxy.isSelected()==true)
+                    {
+                        combo=ab1+combo;
+                    }
+                    if(abxytot.isSelected()==true)
+                    {
+                        combo=ab2+combo;
+                    }
+                    if(abxycombo.isSelected()==true)
+                    {
+                        combo=ab3+combo;
+                    }
+                    if(anal.isSelected()==true)
+                    {
+                        combo=analogue+combo;
+                    }
+                    System.out.println(combo);
+
+                    gselect.close();
+                }
+        );
+
+
+
+        VBox layout = new VBox(20);
+
+        layout.getChildren().addAll(abxy,abxytot,abxycombo,anal,close);
+        layout.setAlignment(Pos.CENTER_LEFT);
+
+        //Display window and wait for it to be closed before returning
+        Scene scene = new Scene(layout);
+        gselect.setScene(scene);
+        scene.getStylesheets().add("style.css");
+        gselect.showAndWait();
+    }
+
 }
