@@ -3,7 +3,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.Glow;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -26,7 +25,8 @@ public class Xbox{
     static float aa,ab,ax,ay,bb,bx,by,xx,xy,yy; //variables for combo buttons
     static int buttoncounter;
     static boolean lalb,larb,laub,ladb,ralb,rarb,radb,raub;
-    static long timebetween;
+    static long timebetween,buttonms,minutecounterstart,minutecounterstop;
+    static boolean minute;
 
 
     static int height,width,total;
@@ -43,7 +43,10 @@ public class Xbox{
         width=height/2;
         lal=lar=lau=lad=ral=rar=rad=rau=time=0;
         temptimer=total=0;
+        buttoncounter=0;
+        buttonms=550;//half a second to press a combo.
         lau=lal=0; //because for the first time it counts as 2 for some reason.
+        minute=true;
     }
 
     public static void setvars()
@@ -118,11 +121,13 @@ public class Xbox{
             controller.setDeadZone(i, (float) 0.4);
         }
     }
+
     public static void polling()
     {
 
         while (done != true)
         {
+
             controller.poll();
             a = controller.isButtonPressed(0);
             b = controller.isButtonPressed(1);
@@ -132,8 +137,11 @@ public class Xbox{
             lb=controller.isButtonPressed(5);
             back=controller.isButtonPressed(6);
 
-
-
+            if(buttoncounter>1)
+            {
+                buttoncounter=-1;
+            }
+            
             //checking the state and which button is active.
             //    System.out.println();
             if(a)
@@ -161,7 +169,6 @@ public class Xbox{
             {
                 //       lbo=true;
             }
-
 
             if(controller.getAxisValue(1)>.70)
             {
@@ -258,6 +265,7 @@ public class Xbox{
             //incrementing for each time a button is pressed.
             if(abo==true &&a==false)
             {
+
                 abo=false;
                 ac++;
                 total++;
@@ -308,9 +316,97 @@ public class Xbox{
             {
                 done=true;
             }
+
         }
     }
 
+    public static void buttonadder()
+    {
+
+            int combo = buttonvalues.get(0) + buttonvalues.get(1);
+            switch (combo)
+            {
+                //A VALUE COMBOS
+                case 200:
+                    aa++;
+                    System.out.println(aa);
+                    break;
+                case 101:
+                    ab++;
+                    System.out.println("AB"+ab);
+                    break;
+                case 102:
+                    ax++;
+
+                    break;
+                case 105:
+                    ay++;
+                    break;
+
+                //B value combos
+                case 2:
+                    bb++;
+                    System.out.println("BB"+bb);
+                    break;
+                case 3:
+                    bx++;
+                    break;
+                case 6:
+                    by++;
+                    break;
+
+                //X VALUE COMBOS
+                case 4:
+                    xx++;
+                    break;
+                case 7:
+                    xy++;
+                    break;
+
+                //Y VALUE COMBOS
+                case 10:
+                    yy++;
+                    break;
+            }
+    }
+
+
+    public static void buttontime(int number)
+    {
+        //Still buggy doesn't work 100% yet, it's about 85% accurate.
+        if(buttoncounter==0)
+        {
+            //gets the first buttons time it was pressed and adds the value corresponding to it to the arraylist.
+            buttime1=System.currentTimeMillis();
+            buttonvalues.add(number);
+        }
+        if(buttoncounter==1)
+        {
+            //gets the second buttons time it was pressed and adds the value corresponding to it to the arraylist.
+            buttime2=System.currentTimeMillis();
+            buttonvalues.add(number);
+            //calculates the timebetween the button presses. If it's less than the number it will then go into the buttonadder function which sees what combo it is and increments
+            timebetween=buttime2-buttime1;
+            if(timebetween < buttonms)
+            {
+                buttonadder();
+                //resets the button count to -1 so when they press a button again for the first time it will be 0.
+                buttoncounter=-1;
+                //puts the timebetween to something high, precaution meassure.
+                timebetween=buttonms*2;
+                buttonvalues.clear();//clears the button combo.
+            }
+           else
+            {
+                buttonvalues.clear();
+                buttoncounter=-1;
+                timebetween=buttonms*2;
+                //Sets the values to something really high so it won't go into buttonadder as a precautionary thing.
+                buttime1=buttime2=buttonms*20;
+            }
+            buttonvalues.clear();
+        }
+    }
     static long tstart;
     public static void timer()
     {
@@ -386,80 +482,6 @@ public class Xbox{
         if(rau!=0) {rau=0;}
         if(ral!=0) {ral=0;}
 
-    }
-
-
-    public static void buttonadder()
-    {
-
-            if(timebetween <400)
-            {
-                int combo = buttonvalues.get(0) + buttonvalues.get(1);
-                switch (combo)
-                {
-                    //A VALUE COMBOS
-                    case 200:
-                        aa++;
-                        System.out.println(aa);
-                        break;
-                    case 101:
-                        ab++;
-                        break;
-                    case 102:
-                        ax++;
-                        break;
-                    case 105:
-                        ay++;
-                        break;
-
-                    //B value combos
-                    case 2:
-                        bb++;
-                        break;
-                    case 3:
-                        bx++;
-                        break;
-                    case 6:
-                        by++;
-                        break;
-
-                    //X VALUE COMBOS
-                    case 4:
-                        xx++;
-                        break;
-                    case 7:
-                        xy++;
-                        break;
-
-                    //Y VALUE COMBOS
-                    case 10:
-                        yy++;
-                        break;
-                }
-                buttonvalues.clear();
-            }
-
-    }
-
-
-    public static void buttontime(int number)
-    {
-        if(buttoncounter>3)
-        {
-            buttoncounter=1;
-        }
-        if(buttoncounter==1)
-        {
-            buttime1=System.currentTimeMillis();
-            buttonvalues.add(number);
-        }
-        if(buttoncounter==2)
-        {
-            buttime2=System.currentTimeMillis();
-            buttonvalues.add(number);
-            timebetween=buttime2-buttime1;
-            buttonadder();
-        }
     }
 
 

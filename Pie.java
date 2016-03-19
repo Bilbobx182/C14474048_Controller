@@ -75,12 +75,12 @@ public class Pie extends Main {
     }
 
 
-        void fixvars()
-        {
-            box.ac=Math.round(box.ac);
-            box.bc=Math.round(box.bc);
-            box.xc=Math.round(box.xc);
-            box.yc=Math.round(box.yc);
-        }
+    void fixvars()
+    {
+        box.ac=Math.round(box.ac);
+        box.bc=Math.round(box.bc);
+        box.xc=Math.round(box.xc);
+        box.yc=Math.round(box.yc);
+    }
 
 }
