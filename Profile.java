@@ -128,7 +128,7 @@ public class Profile
                 {
                     if (afield.getText()==null||afield.getText().trim().isEmpty())
                     {
-                        aval="";
+                        aval="NOTHING";
                     }
                     else
                     {
@@ -137,7 +137,7 @@ public class Profile
 
                     if (bfield.getText()==null||bfield.getText().trim().isEmpty())
                     {
-                        bval="";
+                        bval="NOTHING";
                     }
                     else
                     {
@@ -146,7 +146,7 @@ public class Profile
 
                     if (xfield.getText()==null||xfield.getText().trim().isEmpty())
                     {
-                        xval=" ";
+                        xval="NOTHING";
                     }
                     else
                     {
@@ -154,11 +154,11 @@ public class Profile
                     }
                     if (yfield.getText()==null||yfield.getText().trim().isEmpty())
                     {
-                        yval=" ";
+                        yval="NOTHING";
                     }
                     else
                     {
-                        yval = String.valueOf(yfield.getText());
+                        yval=String.valueOf(yfield.getText());
                     }
                     fd.write(profilename,aval,bval,xval,yval);
                     pop.close();

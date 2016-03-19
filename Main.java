@@ -44,6 +44,7 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        Fileio fd = new Fileio();
         mainmenu = primaryStage;
         mainmenu.setOnCloseRequest(lam -> mainmenu.close());
         box.setup();
@@ -121,10 +122,12 @@ public class Main extends Application
 
                             if (auto == true)
                             {
+                               fd.writestats(piepro,box.ac,box.bc,box.xc,box.yc);
                                 pie.render(piepro);
                                 as.analmap(piepro);
                             } else
                             {
+                              fd.writestats(pro1.ofn,box.ac,box.bc,box.xc,box.yc);
                                 pie.render(pro1.ofn);
                                 as.analmap(pro1.ofn);
                             }
