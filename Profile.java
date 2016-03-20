@@ -286,10 +286,10 @@ public class Profile
         CheckBox abxycombo = new CheckBox("ABXY Combo piechart");
         CheckBox anal = new CheckBox("Analogue stick barchart");
 
-        abxy.setSelected(true);
+        abxy.setSelected(false);
         abxytot.setSelected(true);
-        anal.setSelected(true);
-        abxycombo.setSelected(true);
+        anal.setSelected(false);
+        abxycombo.setSelected(false);
 
 
         Button close = new Button("I am done selecting");

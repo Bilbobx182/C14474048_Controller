@@ -9,6 +9,7 @@ public class Fileio
     public static ArrayList<String> input = new ArrayList<>();
     public static ArrayList<String> profiles = new ArrayList<>();
     Pbox pb=new Pbox();
+    float a,b,x,y;
 
     public void writestats(String profilename,float ac,float bc,float xc,float yc)
     {
@@ -54,7 +55,10 @@ public class Fileio
         bc+=provalues[1];
         xc+=provalues[2];
         yc+=provalues[3];
-
+        a=ac;
+        b=bc;
+        x=xc;
+        y=yc;
         for(int j=0;j<4;j++)
         {
             provalues[j]=0;

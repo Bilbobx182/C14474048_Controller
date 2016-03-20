@@ -26,6 +26,7 @@ public class Main extends Application
     int minbuttonpress=6;
     int res,max;
     Label randompro = new Label();
+    float tota,totb,totx,toty;
 
 
     //Classes
@@ -103,47 +104,101 @@ public class Main extends Application
         begin.setMaxWidth(900000000);
         begin.setMaxHeight(50);
         begin.setOnAction(prof ->
+        {
+            Gameopen();
+
+            if (active == true || pro1.start == true)
+            {
+
+                box.setvars();
+                box.timer();
+                box.statepoll();
+                box.polling();
+
+                prep();
+                if(box.total > minbuttonpress)
                 {
-                    Gameopen();
 
-                    if (active == true || pro1.start==true)
-                    {
-                        box.setvars();
-                        box.timer();
-                        box.statepoll();
-                        box.polling();
-                        box.varprep();
+                    switch (pro1.combo) {
+                        case 1:
+                            if (auto == true) {
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+
+                            } else {
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                            }
+                            break;
+
+                        case 3:
+                            if (auto == true) {
+                                pie.render(piepro, tota, totb, totx, toty);
+
+                            } else {
+                                pie.render(piepro, tota, totb, totx, toty);
+                            }
+                            break;
 
 
-                        if(box.total > minbuttonpress)
-                        {
+                        case 4:
+                            if (auto == true) {
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(piepro, tota, totb, totx, toty);
 
-                            if (auto == true)
-                            {
-                               fd.writestats(piepro,box.ac,box.bc,box.xc,box.yc);
-                                pie.render(piepro,box.ac,box.bc,box.xc,box.yc);
+                            } else {
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                            }
+                            break;
+
+                        case 10:
+                            if (auto == true) {
                                 as.analmap(piepro);
-                            } else
-                            {
-                              fd.writestats(pro1.ofn,box.ac,box.bc,box.xc,box.yc);
-                                pie.render(pro1.ofn,box.ac,box.bc,box.xc,box.yc);
+                            } else {
                                 as.analmap(pro1.ofn);
                             }
-                            box.setvars();
-                        }
-                        else
-                        {
-                            pb.warning("BUTTON ERROR","Please press the buttons more for better graphs :( ");
-                            box.total=minbuttonpress+1;
-                            box.setvars();
-                        }
-                    }
-                    else
-                    {
-                        activepro.setText("NO ACTIVE PROFILE");
+                            break;
+
+                        case 11:
+                            if (auto == true) {
+                                as.analmap(piepro);
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+                            } else {
+                                as.analmap(pro1.ofn);
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                            }
+                            break;
+
+                        case 13:
+                            if (auto == true) {
+                                as.analmap(piepro);
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                            } else {
+                                as.analmap(pro1.ofn);
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                            }
+                            break;
+
+                        case 14:
+                            if (auto == true) {
+                                as.analmap(piepro);
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+                            } else {
+                                as.analmap(pro1.ofn);
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                            }
+                            break;
                     }
                 }
-        );
+                else
+                {
+                    pb.warning("BUTTON ERROR","Please press the buttons more for better graphs :( ");
+                    box.total=minbuttonpress+1;
+                    box.setvars();
+                }
+            }
+        });
 
         //-------------------------------------------------------PROFILE MENU BUTTONS
         //new profile
@@ -250,6 +305,25 @@ public class Main extends Application
             }
             i++;
         }
+    }
+
+    void prep()
+    {
+        //updating the permanent variables before graphing
+        fd.writestats(piepro,box.ac,box.bc,box.xc,box.yc);
+
+        box.varprep();// maps the xbox vars
+        totprep(); //maps the total vars
+    }
+
+    void totprep()
+    {
+        float total=fd.a+fd.b+fd.x+fd.y;
+        tota=box.map(fd.a,0,total,0,100);
+        totb=box.map(fd.b,0,total,0,100);
+        totx=box.map(fd.x,0,total,0,100);
+        toty=box.map(fd.y,0,total,0,100);
+
     }
 
 }//END OF CLASS

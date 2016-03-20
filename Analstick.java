@@ -43,7 +43,6 @@ public class Analstick extends Main
         BarChart<String,Number> analchart =new BarChart<>(xAxis,yAxis);
         //for CSS
         analchart.setId("ACHART");
-     ;
 
         analchart.setTitle(name);
         xAxis.setLabel("Stick name");
@@ -67,7 +66,8 @@ public class Analstick extends Main
 
         analchart.getData().addAll(LEFT,RIGHT);
         amap.setScene(scene);
-
         amap.show();
     }
+
+
 }

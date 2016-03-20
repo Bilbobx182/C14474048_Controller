@@ -484,7 +484,7 @@ public class Xbox{
 
     }
 
-    public static void varprep(float a,float b,float x,float y)
+    public static void varprep()
     {
         ac=map(ac,0,total,0,100);
         bc=map(bc,0,total,0,100);
