@@ -75,8 +75,6 @@ public class Main extends Application
                     mainmenu.setTitle("Controller Profile Screen");
                     max= fd.profiles.size();
                    res = gen.nextInt(max);
-
-
                 }
         );
 
@@ -118,7 +116,7 @@ public class Main extends Application
                 prep();
                 if(box.total > minbuttonpress)
                 {
-
+                    box.monitor();
                     switch (pro1.combo) {
                         case 1:
                             if (auto == true) {
@@ -323,7 +321,6 @@ public class Main extends Application
         totb=box.map(fd.b,0,total,0,100);
         totx=box.map(fd.x,0,total,0,100);
         toty=box.map(fd.y,0,total,0,100);
-
     }
 
 }//END OF CLASS
