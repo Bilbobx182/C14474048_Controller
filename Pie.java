@@ -27,6 +27,11 @@ public class Pie extends Main {
         stage.setMinHeight(500);
         stage.setMinWidth(500);
 
+        a=Math.round(a);
+        b=Math.round(b);
+        x=Math.round(x);
+        y=Math.round(y);
+
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
                         new PieChart.Data("(A)"+fd.input.get(0),a),
                         new PieChart.Data("(B)"+fd.input.get(1),b),
