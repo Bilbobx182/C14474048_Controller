@@ -40,8 +40,5 @@ V.0.3.8		Made it so there is a counter for each profiles button presses.
 V.0.3.9		Fixed bug with profile creation and exceptions.
 V.0.4.0		Lowered Coupling between the Piechart class and Xbox class so that the Piechart can be reused better. Added in Graph choice tickboxes.
 V.0.4.1 	Made it so you can select which profiles appear. Although Combination graph doesn't exist yet.
-<<<<<<< HEAD
-V.0.4.2		Added in text stats back, again.
-=======
-V.0.4.2		Updated readme.
->>>>>>> c2737d8eccc3fa182e361b0d9a011c1ae0a1bdd9
+V.0.4.2     Updated Readme
+V.0.4.3		Fixed git conflicts hopefully.
