@@ -30,7 +30,7 @@ public class Profile
         ab2=3;
         ab3=5;
         analogue=10;
-        combo=19;//by default so all graphs will be set
+        combo=1;//by default so all graphs will be set
     }
 
     public void title()

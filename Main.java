@@ -7,10 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 
+import java.net.URL;
 import java.util.Random;
 
 public class Main extends Application
@@ -27,6 +29,8 @@ public class Main extends Application
     int res,max;
     Label randompro = new Label();
     float tota,totb,totx,toty;
+    boolean OS=false;
+
 
 
     //Classes
@@ -45,7 +49,15 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        OStest();
+
         Fileio fd = new Fileio();
+
+        //SOUNDS
+        String filelocation = getClass().getResource("sound.wav").toString(); //Path to the soundfile
+       // System.out.println(filelocation);
+        AudioClip timedone = new AudioClip(filelocation);
+
         mainmenu = primaryStage;
         mainmenu.setOnCloseRequest(lam -> mainmenu.close());
         box.setup();
@@ -103,7 +115,10 @@ public class Main extends Application
         begin.setMaxHeight(50);
         begin.setOnAction(prof ->
         {
-            Gameopen();
+            if(OS==true)
+            {
+                Gameopen();
+            }
 
             if (active == true || pro1.start == true)
             {
@@ -112,11 +127,12 @@ public class Main extends Application
                 box.timer();
                 box.statepoll();
                 box.polling();
-
+                timedone.play(1.0);
                 prep();
+
+
                 if(box.total > minbuttonpress)
                 {
-                    box.monitor();
                     switch (pro1.combo) {
                         case 1:
                             if (auto == true) {
@@ -323,4 +339,14 @@ public class Main extends Application
         toty=box.map(fd.y,0,total,0,100);
     }
 
+    void OStest()
+    {
+       String Operating=System.getProperty("os.name");
+        System.out.println(Operating);
+
+        OS=Operating.toLowerCase().contains("WINDOWS".toLowerCase());
+        System.out.println(OS);
+
+
+    }
 }//END OF CLASS

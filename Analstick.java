@@ -40,8 +40,8 @@ public class Analstick extends Main
 
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
-        BarChart<String,Number> analchart =new BarChart<>(xAxis,yAxis);
-        //for CSS
+
+        BarChart<String, Number> analchart = new BarChart<>(xAxis, yAxis);
         analchart.setId("ACHART");
 
         analchart.setTitle(name);
@@ -50,24 +50,22 @@ public class Analstick extends Main
 
         XYChart.Series LEFT = new XYChart.Series();
         LEFT.setName("Left Stick");
-        LEFT.getData().add(new XYChart.Data(GE1,box.lal));
-        LEFT.getData().add(new XYChart.Data(GE2,box.lar));
-        LEFT.getData().add(new XYChart.Data(GE3,box.lau));
-        LEFT.getData().add(new XYChart.Data(GE4,box.lad));
+        LEFT.getData().add(new XYChart.Data(GE1, box.lal));
+        LEFT.getData().add(new XYChart.Data(GE2, box.lar));
+        LEFT.getData().add(new XYChart.Data(GE3, box.lau));
+        LEFT.getData().add(new XYChart.Data(GE4, box.lad));
 
-        XYChart.Series RIGHT= new XYChart.Series();
+        XYChart.Series RIGHT = new XYChart.Series();
         RIGHT.setName("Right Stick");
-        RIGHT.getData().add(new XYChart.Data(GE1,box.ral));
-        RIGHT.getData().add(new XYChart.Data(GE2,box.rar));
-        RIGHT.getData().add(new XYChart.Data(GE3,box.rau));
-        RIGHT.getData().add(new XYChart.Data(GE4,box.rad));
+        RIGHT.getData().add(new XYChart.Data(GE1, box.ral));
+        RIGHT.getData().add(new XYChart.Data(GE2, box.rar));
+        RIGHT.getData().add(new XYChart.Data(GE3, box.rau));
+        RIGHT.getData().add(new XYChart.Data(GE4, box.rad));
+
 
         Scene scene  = new Scene(analchart,600,600);
-
         analchart.getData().addAll(LEFT,RIGHT);
         amap.setScene(scene);
         amap.show();
     }
-
-
 }

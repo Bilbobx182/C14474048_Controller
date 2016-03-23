@@ -490,6 +490,10 @@ public class Xbox{
         bc=map(bc,0,total,0,100);
         yc=map(yc,0,total,0,100);
         xc=map(xc,0,total,0,100);
+        ac=Math.round(ac);
+        bc=Math.round(bc);
+        xc=Math.round(xc);
+        yc=Math.round(yc);
     }
 
    static float map(float value, float oldstart, float oldstop, float newstart, float newend)
