@@ -33,11 +33,11 @@ public class Pie extends Main {
         y=Math.round(y);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-                        new PieChart.Data("(A)"+fd.input.get(0),a),
-                        new PieChart.Data("(B)"+fd.input.get(1),b),
-                        new PieChart.Data("(X)"+fd.input.get(2),x),
-                        new PieChart.Data("(Y)"+fd.input.get(3),y));
-         PieChart chart = new PieChart(data);
+                new PieChart.Data("(A)"+fd.input.get(0),a),
+                new PieChart.Data("(B)"+fd.input.get(1),b),
+                new PieChart.Data("(X)"+fd.input.get(2),x),
+                new PieChart.Data("(Y)"+fd.input.get(3),y));
+        PieChart chart = new PieChart(data);
         chart.setTitle(piepro);
 
 
@@ -60,6 +60,58 @@ public class Pie extends Main {
 
         ((Group) scene.getRoot()).getChildren().addAll(chart,percendisplay);
         stage.setScene(scene);
+        stage.showAndWait();
+    }
+
+    public void complexrender(String piepro)
+    {
+        Stage stage = new Stage();
+        Scene combographscene= new Scene(new Group());
+        double width= combographscene.getWidth();
+        stage.setTitle(piepro+" Stats");
+
+
+        stage.setWidth(500);
+        stage.setHeight(500);
+        stage.setMinHeight(500);
+        stage.setMinWidth(500);
+
+
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
+                new PieChart.Data("(AA)",box.aa),
+                new PieChart.Data("(AB)",box.ab),
+                new PieChart.Data("(AX)",box.ax),
+                new PieChart.Data("(AY)",box.ay),
+                new PieChart.Data("(BB)",box.bb),
+                new PieChart.Data("(BX)",box.bx),
+                new PieChart.Data("(BY)",box.by),
+                new PieChart.Data("(XX)",box.xx),
+                new PieChart.Data("(XY)",box.xy),
+                new PieChart.Data("(YY)",box.yy));
+
+        PieChart chart = new PieChart(data);
+        chart.setTitle(piepro);
+
+
+        //the label for displaying the percentage of the button pressed.
+        final Label percendisplay = new Label();
+        percendisplay.setTextFill(Color.BLACK);
+
+        for (final PieChart.Data d : chart.getData())
+        {
+            d.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, lam ->
+            {
+                percendisplay.setTranslateX(lam.getSceneX());
+                percendisplay.setTranslateY(lam.getSceneY());
+                percendisplay.setText(String.valueOf(d.getPieValue()) + "%");
+            });
+        }
+
+        chart.setLabelLineLength(width/3);
+        chart.setLegendSide(Side.TOP);
+
+        ((Group) combographscene.getRoot()).getChildren().addAll(chart,percendisplay);
+        stage.setScene(combographscene);
         stage.showAndWait();
     }
 }

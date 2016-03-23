@@ -135,7 +135,8 @@ public class Main extends Application
                 {
                     switch (pro1.combo) {
                         case 1:
-                            if (auto == true) {
+                            if (auto == true)
+                            {
                                 pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
 
                             } else {
@@ -148,7 +149,15 @@ public class Main extends Application
                                 pie.render(piepro, tota, totb, totx, toty);
 
                             } else {
-                                pie.render(piepro, tota, totb, totx, toty);
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                            }
+                            break;
+                        case 5:
+                            if (auto == true) {
+                                pie.complexrender(piepro);
+
+                            } else {
+                                pie.complexrender(pro1.ofn);
                             }
                             break;
 
@@ -328,6 +337,7 @@ public class Main extends Application
 
         box.varprep();// maps the xbox vars
         totprep(); //maps the total vars
+
     }
 
     void totprep()
@@ -338,6 +348,7 @@ public class Main extends Application
         totx=box.map(fd.x,0,total,0,100);
         toty=box.map(fd.y,0,total,0,100);
     }
+
 
     void OStest()
     {

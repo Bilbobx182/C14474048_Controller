@@ -42,4 +42,5 @@ V.0.4.0		Lowered Coupling between the Piechart class and Xbox class so that the 
 V.0.4.1 	Made it so you can select which profiles appear. Although Combination graph doesn't exist yet.
 V.0.4.2     Updated Readme
 V.0.4.3		Fixed git conflicts hopefully.
-V.0.4.4		Implemented OS control so it hopefully wont bomb out on Linux/Mac.
+V.0.4.4		Implemented OS control so it hopefully wont bomb out on Linux/Mac. Also implemented audio.
+V.0.4.5		Combo piechart is now working. Yet to add full options for it.

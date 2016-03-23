@@ -494,6 +494,33 @@ public class Xbox{
         bc=Math.round(bc);
         xc=Math.round(xc);
         yc=Math.round(yc);
+
+        int total=(int)aa+(int)ab+(int)ax+(int)ay+(int)bb+(int)bx+(int)by+(int)xx+(int)xy+(int)yy;
+
+        aa=map(aa,0,total,0,100);
+        ab=map(ab,0,total,0,100);
+        ax=map(ax,0,total,0,100);
+        ay=map(ay,0,total,0,100);
+        bb=map(bb,0,total,0,100);
+        bx=map(bx,0,total,0,100);
+        by=map(by,0,total,0,100);
+        xx=map(xx,0,total,0,100);
+        xy=map(xy,0,total,0,100);
+        yy=map(yy,0,total,0,100);
+        ac=Math.round(ac);
+        bc=Math.round(bc);
+        xc=Math.round(xc);
+        yc=Math.round(yc);
+        aa=Math.round(aa);
+        ab=Math.round(ab);
+        ax=Math.round(ax);
+        ay=Math.round(ay);
+        bb=Math.round(bb);
+        bx=Math.round(bx);
+        by=Math.round(by);
+        xx=Math.round(xx);
+        xy=Math.round(xy);
+        yy=Math.round(yy);
     }
 
    static float map(float value, float oldstart, float oldstop, float newstart, float newend)
