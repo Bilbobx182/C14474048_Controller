@@ -78,16 +78,16 @@ public class Pie extends Main {
 
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-                new PieChart.Data("(AA)",box.aa),
-                new PieChart.Data("(AB)",box.ab),
-                new PieChart.Data("(AX)",box.ax),
-                new PieChart.Data("(AY)",box.ay),
-                new PieChart.Data("(BB)",box.bb),
-                new PieChart.Data("(BX)",box.bx),
-                new PieChart.Data("(BY)",box.by),
-                new PieChart.Data("(XX)",box.xx),
-                new PieChart.Data("(XY)",box.xy),
-                new PieChart.Data("(YY)",box.yy));
+                new PieChart.Data("(AA)", box.combo[0]),
+                new PieChart.Data("(AB)",box.combo[1]),
+                new PieChart.Data("(AX)",box.combo[2]),
+                new PieChart.Data("(AY)",box.combo[3]),
+                new PieChart.Data("(BB)",box.combo[4]),
+                new PieChart.Data("(BX)",box.combo[5]),
+                new PieChart.Data("(BY)",box.combo[6]),
+                new PieChart.Data("(XX)",box.combo[7]),
+                new PieChart.Data("(XY)",box.combo[8]),
+                new PieChart.Data("(YY)",box.combo[9]));
 
         PieChart chart = new PieChart(data);
         chart.setTitle(piepro);

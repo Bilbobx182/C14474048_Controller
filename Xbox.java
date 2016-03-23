@@ -22,12 +22,12 @@ public class Xbox{
     static boolean abo, bbo, xbo, ybo; //booleans for the counters so they go up by one.
     static float ac, bc, xc, yc;    //counters for buttons
     static float lal,lar,lau,lad,ral,rar,rad,rau;//counters for Left/Right Analogue Up/Down/Left/Right
-    static float aa,ab,ax,ay,bb,bx,by,xx,xy,yy; //variables for combo buttons
+    static float[]combo=new float[10];//aa=0,ab=1,ax=2,ay=3,bb=4 so on.....
+
     static int buttoncounter;
     static boolean lalb,larb,laub,ladb,ralb,rarb,radb,raub;
     static long timebetween,buttonms,minutecounterstart,minutecounterstop;
     static boolean minute;
-
 
     static int height,width,total;
     static boolean done;
@@ -55,13 +55,16 @@ public class Xbox{
         done=false;
         buttoncounter=total=0;
         lal=lar=lau=lad=ral=rar=rad=rau=0;
-        aa=ab=ax=ay=bb=bx=by=xx=xy=yy=0;//setting the combo counters to 0
+
+        for(int i=0;i<10;i++)
+        {
+            combo[i]=0;
+        }
           /*
         A==100
         B==1
         X==2
         Y==5
-
         We have no repeating values using these arbitrary  numbers
          */
     }
@@ -323,54 +326,50 @@ public class Xbox{
     public static void buttonadder()
     {
 
-            int combo = buttonvalues.get(0) + buttonvalues.get(1);
-            switch (combo)
+            int buttval = buttonvalues.get(0) + buttonvalues.get(1);
+            switch (buttval)
             {
                 //A VALUE COMBOS
                 case 200:
-                    aa++;
-                    System.out.println(aa);
+                    combo[0]++;
+                    System.out.println(combo[0]);
                     break;
                 case 101:
-                    ab++;
-                    System.out.println("AB"+ab);
+                    combo[1]++;
                     break;
                 case 102:
-                    ax++;
-
+                    combo[2]++;
                     break;
                 case 105:
-                    ay++;
+                    combo[3]++;
                     break;
 
                 //B value combos
-                case 2:
-                    bb++;
-                    System.out.println("BB"+bb);
+                case 2://bb
+                    combo[4]++;
                     break;
-                case 3:
-                    bx++;
+                case 3://bx
+                    combo[5]++;
                     break;
-                case 6:
-                    by++;
+                case 6://by
+                    combo[6]++;
                     break;
 
                 //X VALUE COMBOS
-                case 4:
-                    xx++;
+                case 4://xx
+                    combo[7]++;
                     break;
-                case 7:
-                    xy++;
+                case 7://xy
+                    combo[8]++;
                     break;
 
                 //Y VALUE COMBOS
-                case 10:
-                    yy++;
+                case 10://yy
+                    combo[9]++;
                     break;
             }
     }
-
-
+    
     public static void buttontime(int number)
     {
         //Still buggy doesn't work 100% yet, it's about 85% accurate.
@@ -495,32 +494,16 @@ public class Xbox{
         xc=Math.round(xc);
         yc=Math.round(yc);
 
-        int total=(int)aa+(int)ab+(int)ax+(int)ay+(int)bb+(int)bx+(int)by+(int)xx+(int)xy+(int)yy;
-
-        aa=map(aa,0,total,0,100);
-        ab=map(ab,0,total,0,100);
-        ax=map(ax,0,total,0,100);
-        ay=map(ay,0,total,0,100);
-        bb=map(bb,0,total,0,100);
-        bx=map(bx,0,total,0,100);
-        by=map(by,0,total,0,100);
-        xx=map(xx,0,total,0,100);
-        xy=map(xy,0,total,0,100);
-        yy=map(yy,0,total,0,100);
-        ac=Math.round(ac);
-        bc=Math.round(bc);
-        xc=Math.round(xc);
-        yc=Math.round(yc);
-        aa=Math.round(aa);
-        ab=Math.round(ab);
-        ax=Math.round(ax);
-        ay=Math.round(ay);
-        bb=Math.round(bb);
-        bx=Math.round(bx);
-        by=Math.round(by);
-        xx=Math.round(xx);
-        xy=Math.round(xy);
-        yy=Math.round(yy);
+        int total=0;
+        for(int i=0;i<10;i++)
+        {
+            total=total+(int)combo[i];
+        }
+        for(int i=0;i<10;i++)
+        {
+            combo[i]=map(combo[i],0,total,0,100);
+            combo[i]=Math.round(combo[i]);
+        }
     }
 
    static float map(float value, float oldstart, float oldstop, float newstart, float newend)

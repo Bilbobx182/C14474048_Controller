@@ -44,3 +44,4 @@ V.0.4.2     Updated Readme
 V.0.4.3		Fixed git conflicts hopefully.
 V.0.4.4		Implemented OS control so it hopefully wont bomb out on Linux/Mac. Also implemented audio.
 V.0.4.5		Combo piechart is now working. Yet to add full options for it.
+V.0.4.6		Refactored code, instead of 10 variables for possible combinations, it's now only 1 array. This removed 30 lines of code. Less code now by 1.875 %.
