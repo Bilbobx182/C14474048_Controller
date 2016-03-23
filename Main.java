@@ -133,7 +133,8 @@ public class Main extends Application
 
                 if(box.total > minbuttonpress)
                 {
-                    switch (pro1.combo) {
+                    switch (pro1.combo)
+                    {
                         case 1:
                             if (auto == true)
                             {
@@ -152,15 +153,6 @@ public class Main extends Application
                                 pie.render(pro1.ofn, tota, totb, totx, toty);
                             }
                             break;
-                        case 5:
-                            if (auto == true) {
-                                pie.complexrender(piepro);
-
-                            } else {
-                                pie.complexrender(pro1.ofn);
-                            }
-                            break;
-
 
                         case 4:
                             if (auto == true) {
@@ -173,11 +165,55 @@ public class Main extends Application
                             }
                             break;
 
+                        case 5:
+                            if (auto == true) {
+                                pie.complexrender(piepro+"Combo");
+
+                            } else {
+                                pie.complexrender(pro1.ofn+"Combo");
+                            }
+                            break;
+
+                        case 6:
+                            if (auto == true) {
+                                pie.complexrender(piepro+"Combo");
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+
+                            } else {
+                                pie.complexrender(pro1.ofn+"Combo");
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                            }
+                            break;
+
+                        case 8:
+                            if (auto == true) {
+                                pie.complexrender(piepro+"Combo");
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+
+                            } else {
+                                pie.complexrender(pro1.ofn+"Combo");
+                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                            }
+                            break;
+
                         case 10:
                             if (auto == true) {
                                 as.analmap(piepro);
                             } else {
                                 as.analmap(pro1.ofn);
+                            }
+                            break;
+
+                        case 9:
+                            if (auto == true) {
+                                pie.complexrender(piepro+"Combo");
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+
+                            } else {
+                                pie.complexrender(pro1.ofn+"Combo");
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
                             }
                             break;
 
@@ -194,22 +230,60 @@ public class Main extends Application
                         case 13:
                             if (auto == true) {
                                 as.analmap(piepro);
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
                             } else {
                                 as.analmap(pro1.ofn);
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
                             }
                             break;
 
                         case 14:
                             if (auto == true) {
                                 as.analmap(piepro);
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
                                 pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
                             } else {
                                 as.analmap(pro1.ofn);
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
                                 pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                            }
+                            break;
+
+                        case 15:
+                            if (auto == true) {
+                                as.analmap(piepro);
+                                pie.complexrender(piepro+"Combo");
+                                pie.render(piepro+"Total", tota, totb, totx, toty);
+
+                            } else {
+                                as.analmap(pro1.ofn);
+                                pie.complexrender(pro1.ofn+"Combo");
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+                            }
+                            break;
+
+                        case 18:
+                            if (auto == true) {
+                                as.analmap(piepro);
+                                pie.complexrender(piepro+"Combo");
+
+                            } else {
+                                as.analmap(pro1.ofn);
+                                pie.complexrender(pro1.ofn+"Combo");
+                            }
+                            break;
+                        case 19:
+                            if (auto == true) {
+                                as.analmap(piepro);
+                                pie.complexrender(piepro+"Combo");
+                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+
+                            } else {
+                                as.analmap(pro1.ofn);
+                                pie.complexrender(pro1.ofn+"Combo");
+                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
                             }
                             break;
                     }
@@ -337,7 +411,6 @@ public class Main extends Application
 
         box.varprep();// maps the xbox vars
         totprep(); //maps the total vars
-
     }
 
     void totprep()
@@ -349,7 +422,6 @@ public class Main extends Application
         toty=box.map(fd.y,0,total,0,100);
     }
 
-
     void OStest()
     {
        String Operating=System.getProperty("os.name");
@@ -357,7 +429,5 @@ public class Main extends Application
 
         OS=Operating.toLowerCase().contains("WINDOWS".toLowerCase());
         System.out.println(OS);
-
-
     }
 }//END OF CLASS

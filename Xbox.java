@@ -369,7 +369,7 @@ public class Xbox{
                     break;
             }
     }
-    
+
     public static void buttontime(int number)
     {
         //Still buggy doesn't work 100% yet, it's about 85% accurate.
