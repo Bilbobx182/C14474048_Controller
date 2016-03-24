@@ -47,3 +47,4 @@ V.0.4.5		Combo piechart is now working. Yet to add full options for it.
 V.0.4.6		Refactored code, instead of 10 variables for possible combinations, it's now only 1 array. This removed 30 lines of code. Less code now by 1.875 %.
 V.0.4.7		All  ABXY graphs are now implemented.
 V.0.4.8		Implemented the fireflies in the background for nice visuals.
+V.0.4.9		Fixed bug where at the start it auto ticking the boxes wouldn't give the same graphs as a result.
