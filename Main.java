@@ -1,19 +1,31 @@
 package root;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.geometry.*;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.Random;
+
+import static java.lang.Math.random;
 
 public class Main extends Application
 {
@@ -68,6 +80,8 @@ public class Main extends Application
         shadow.setOffsetX(4);
         shadow.setOffsetY(4);
         shadow.setColor(Color.web("0x3b596d"));
+
+
 
         //-------------------------------------------------------MAIN MENU BUTTONS
         Pie pie=new Pie();
@@ -334,8 +348,47 @@ public class Main extends Application
         randompro.setText(fd.profiles.get(res)+'\r' +"Is a profile you have");
 
         //-----------------------------------------------------------ETC MENU BUTTONS
+
+       //BACKGROUND FIREFLY VISUALS
+
+        Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+
+        Group fireflies = new Group();
+        for (int i = 0; i <182; i++)
+        {
+            //Gives the circle a random radius, and sets it to a golden colour.
+            Circle firefly = new Circle(Math.random()*2.5, Color.web("#383838", 0.15));
+            //colouring the stroke and saying how big it is.
+            firefly.setStroke(Color.web("gold", 0.25));
+            firefly.setStrokeWidth(1.5);
+            //adding it to the colective.
+            fireflies.getChildren().add(firefly);
+        }
+
+        fireflies.setEffect(new BoxBlur(15,15,15));
+        fireflies.setEffect(new Glow(random()*random()*25));
+
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        for (Node circle:fireflies.getChildren())
+        {
+            timeline.getKeyFrames().addAll(
+                    // set start position at 0
+                    new KeyFrame(Duration.ZERO,
+                            new KeyValue(circle.translateXProperty(), random()*screen.getWidth()),
+                            new KeyValue(circle.translateYProperty(), random()*screen.getWidth())),
+                    //Setting the end point
+                    new KeyFrame(new Duration(30000),
+                            new KeyValue(circle.translateXProperty(), random()*screen.getWidth()),
+                            new KeyValue(circle.translateYProperty(), random()*screen.getWidth()))
+            );
+        }
+
+        timeline.play();
+
         StackPane mmlayout = new StackPane();
-        mmlayout.getChildren().addAll(begin,promenu,etc, quit,activepro);
+        mmlayout.getChildren().addAll(fireflies,begin,promenu,etc, quit,activepro);
         mm = new Scene(mmlayout, 600, 600);
 
         StackPane pmlayout = new StackPane();
@@ -425,9 +478,6 @@ public class Main extends Application
     void OStest()
     {
        String Operating=System.getProperty("os.name");
-        System.out.println(Operating);
-
         OS=Operating.toLowerCase().contains("WINDOWS".toLowerCase());
-        System.out.println(OS);
     }
 }//END OF CLASS
