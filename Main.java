@@ -107,7 +107,22 @@ public class Main extends Application
         Button etc = new Button("Other options");
         etc.setOnAction(pm ->
                 {
+                    mainmenu.setTitle("Controller Misc options");
+                    mainmenu.setScene(em);
+                }
+        );
+
+        Button selector = new Button("Graph Selector");
+        selector.setOnAction(pm ->
+                {
                     pro1.graphlist();
+                }
+        );
+
+        Button about = new Button("About me");
+        about.setOnAction(pm ->
+                {
+                    pb.warning("About the program/Dev","Hi this program was written by Ciaran Ó Nuallain. \n" + "I did this for my 2nd year end of year assignment. \n" + "\n" + "A hidden tip is: Hitting \"select\" will stop the timer");
                 }
         );
 
@@ -118,6 +133,14 @@ public class Main extends Application
                     mainmenu.setTitle("Controller Home Screen");
                     res = gen.nextInt(max);
                     randompro.setText(fd.profiles.get(res)+'\r' +"Is a profile you have");
+                }
+        );
+        Button b2m2 = new Button("Back to main menu");
+        b2m2.setOnAction(pm ->
+                {
+                    mainmenu.setScene(mm);
+                    mainmenu.setTitle("Controller Home Screen");
+                    res = gen.nextInt(max);
                 }
         );
 
@@ -202,7 +225,7 @@ public class Main extends Application
                         case 8:
                             if (auto == true) {
                                 pie.complexrender(piepro+"Combo");
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
+                                pie.render(piepro, tota, totb, totx, toty);
 
                             } else {
                                 pie.complexrender(pro1.ofn+"Combo");
@@ -222,7 +245,7 @@ public class Main extends Application
                             if (auto == true) {
                                 pie.complexrender(piepro+"Combo");
                                 pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+                                pie.render(piepro+"Total", tota, totb, totx, toty);
 
                             } else {
                                 pie.complexrender(pro1.ofn+"Combo");
@@ -244,7 +267,7 @@ public class Main extends Application
                         case 13:
                             if (auto == true) {
                                 as.analmap(piepro);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+                                pie.render(piepro+"Total", tota, totb, totx, toty);
                             } else {
                                 as.analmap(pro1.ofn);
                                 pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
@@ -254,7 +277,7 @@ public class Main extends Application
                         case 14:
                             if (auto == true) {
                                 as.analmap(piepro);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+                                pie.render(piepro+"Total", tota, totb, totx, toty);
                                 pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
                             } else {
                                 as.analmap(pro1.ofn);
@@ -291,7 +314,7 @@ public class Main extends Application
                                 as.analmap(piepro);
                                 pie.complexrender(piepro+"Combo");
                                 pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
+                                pie.render(piepro+"Total", tota, totb, totx, toty);
 
                             } else {
                                 as.analmap(pro1.ofn);
@@ -388,30 +411,36 @@ public class Main extends Application
         timeline.play();
 
         StackPane mmlayout = new StackPane();
-        mmlayout.getChildren().addAll(fireflies,begin,promenu,etc, quit,activepro);
-        mm = new Scene(mmlayout, 600, 600);
 
-        StackPane pmlayout = new StackPane();
-        pm = new Scene(pmlayout, 600, 600);
-        pmlayout.getChildren().addAll(select,profile,b2m,randompro);
-
-
-        //------------------------------------------------------MAIN MENU ALLIGNMENTS
         StackPane.setAlignment(begin, Pos.TOP_CENTER);
         StackPane.setAlignment(activepro,Pos.CENTER);
-        StackPane.setAlignment(profile, Pos.BOTTOM_CENTER);
+        StackPane.setAlignment(etc,Pos.BOTTOM_CENTER);
         StackPane.setAlignment(select, Pos.BOTTOM_LEFT);
         StackPane.setAlignment(quit, Pos.BOTTOM_RIGHT);
 
-        //------------------------------------------------------PROFILE ALLIGNMENTS
+        mmlayout.getChildren().addAll(fireflies,begin,promenu,etc, quit,activepro);
+        mm = new Scene(mmlayout, 600, 600);
+        StackPane emlayout = new StackPane();
+
+        StackPane.setAlignment(selector, Pos.BOTTOM_LEFT);
+        StackPane.setAlignment(about, Pos.BOTTOM_CENTER);
+        StackPane.setAlignment(b2m2, Pos.BOTTOM_RIGHT);
+        emlayout.getChildren().addAll(selector,about,b2m2);
+        em = new Scene(emlayout, 600, 600);
+
+        StackPane pmlayout = new StackPane();
+
         StackPane.setAlignment(promenu, Pos.BOTTOM_LEFT);
-        StackPane.setAlignment(etc, Pos.BOTTOM_CENTER);
+        StackPane.setAlignment(profile, Pos.BOTTOM_CENTER);
         StackPane.setAlignment(randompro, Pos.CENTER);
         StackPane.setAlignment(b2m, Pos.BOTTOM_RIGHT);
+        pmlayout.getChildren().addAll(select,profile,b2m,randompro);
 
+        pm = new Scene(pmlayout, 600, 600);
 
         mm.getStylesheets().add("style.css");
         pm.getStylesheets().add("style.css");
+        em.getStylesheets().add("style.css");
 
         mainmenu.setScene(mm);
         mainmenu.show();
@@ -477,7 +506,7 @@ public class Main extends Application
 
     void OStest()
     {
-       String Operating=System.getProperty("os.name");
+        String Operating=System.getProperty("os.name");
         OS=Operating.toLowerCase().contains("WINDOWS".toLowerCase());
     }
 }//END OF CLASS
