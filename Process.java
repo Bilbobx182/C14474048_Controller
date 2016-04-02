@@ -9,7 +9,7 @@ public class Process
 {
     public static String line;
     public static ArrayList<String> prolist = new ArrayList<>();
-
+    String result;
 
     void tasklist()
     {
@@ -23,27 +23,26 @@ public class Process
             e.printStackTrace();
         }
 
-        BufferedReader tlist = new BufferedReader(new InputStreamReader(activepro.getInputStream()));
         try
         {
-            int i=0;
+            BufferedReader tlist = new BufferedReader(new InputStreamReader(activepro.getInputStream()));
+
             while ((line = tlist.readLine()) != null)
             {
                 if (!line.trim().equals(""))
                 {
-                    prolist.add(line.substring(0, line.indexOf(" ")));
-                    String result=prolist.get(i);
+                   result=(line.substring(0, line.indexOf(" ")));
                     if(result.contains(".exe"))
                     {
-                        //removes the exe
                         result=result.substring(0,result.indexOf(".exe"));
-                        //deletes what originally was in prolist last
-                        prolist.remove(prolist.size() - 1);
                         //adds the program without the exe to the arraylist
                         prolist.add(result);
                       //System.out.println(prolist.get(i));
                     }
-                    i++;
+                }
+                else
+                {
+                    System.out.println("blank task");
                 }
             }
         }

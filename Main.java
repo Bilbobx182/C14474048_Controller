@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.geometry.*;
 import javafx.util.Duration;
 
-import java.net.URL;
 import java.util.Random;
 
 import static java.lang.Math.random;
@@ -35,7 +34,7 @@ public class Main extends Application
 
     boolean auto=false;
     boolean active=false;
-    String piepro;
+    String autoprofile;
     Label activepro = new Label();
     int minbuttonpress=6;
     int res,max;
@@ -43,10 +42,9 @@ public class Main extends Application
     float tota,totb,totx,toty;
     boolean OS=false;
 
-
+    String overallprofile;
 
     //Classes
-    public static Profile pro1 = new Profile();
     public static Xbox box = new Xbox();
     public static Fileio fd = new Fileio();
     public static Process pr = new Process();
@@ -64,6 +62,7 @@ public class Main extends Application
         OStest();
 
         Fileio fd = new Fileio();
+        Profile pro1 = new Profile();
 
         //SOUNDS
         String filelocation = getClass().getResource("sound.wav").toString(); //Path to the soundfile
@@ -157,6 +156,11 @@ public class Main extends Application
                 Gameopen();
             }
 
+             if(pro1.start==true)
+            {
+                overallprofile=pro1.ofn;
+            }
+
             if (active == true || pro1.start == true)
             {
 
@@ -173,155 +177,76 @@ public class Main extends Application
                     switch (pro1.combo)
                     {
                         case 1:
-                            if (auto == true)
-                            {
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-
-                            } else {
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                            }
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             break;
 
                         case 3:
-                            if (auto == true) {
-                                pie.render(piepro, tota, totb, totx, toty);
-
-                            } else {
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
-                            }
+                                pie.render(overallprofile, tota, totb, totx, toty);
                             break;
 
                         case 4:
-                            if (auto == true) {
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(piepro, tota, totb, totx, toty);
-
-                            } else {
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
-                            }
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(overallprofile, tota, totb, totx, toty);
                             break;
 
                         case 5:
-                            if (auto == true) {
-                                pie.complexrender(piepro+"Combo");
-
-                            } else {
-                                pie.complexrender(pro1.ofn+"Combo");
-                            }
+                                pie.complexrender(overallprofile+"Combo");
                             break;
 
                         case 6:
-                            if (auto == true) {
-                                pie.complexrender(piepro+"Combo");
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-
-                            } else {
-                                pie.complexrender(pro1.ofn+"Combo");
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                            }
+                                pie.complexrender(overallprofile+"Combo");
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             break;
 
                         case 8:
-                            if (auto == true) {
-                                pie.complexrender(piepro+"Combo");
-                                pie.render(piepro, tota, totb, totx, toty);
-
-                            } else {
-                                pie.complexrender(pro1.ofn+"Combo");
-                                pie.render(pro1.ofn, tota, totb, totx, toty);
-                            }
+                                pie.complexrender(overallprofile+"Combo");
+                                pie.render(overallprofile, tota, totb, totx, toty);
                             break;
 
                         case 10:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                            } else {
-                                as.analmap(pro1.ofn);
-                            }
+                                as.analmap(overallprofile);
                             break;
 
                         case 9:
-                            if (auto == true) {
-                                pie.complexrender(piepro+"Combo");
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(piepro+"Total", tota, totb, totx, toty);
-
-                            } else {
-                                pie.complexrender(pro1.ofn+"Combo");
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
-                            }
+                                pie.complexrender(overallprofile+"Combo");
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
                             break;
 
                         case 11:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                            } else {
-                                as.analmap(pro1.ofn);
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                            }
+
+                                as.analmap(overallprofile);
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             break;
 
                         case 13:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                                pie.render(piepro+"Total", tota, totb, totx, toty);
-                            } else {
-                                as.analmap(pro1.ofn);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
-                            }
+                                as.analmap(overallprofile);
+                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
                             break;
 
                         case 14:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                                pie.render(piepro+"Total", tota, totb, totx, toty);
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                            } else {
-                                as.analmap(pro1.ofn);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                            }
+                                as.analmap(overallprofile);
+                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             break;
 
                         case 15:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                                pie.complexrender(piepro+"Combo");
-                                pie.render(piepro+"Total", tota, totb, totx, toty);
-
-                            } else {
-                                as.analmap(pro1.ofn);
-                                pie.complexrender(pro1.ofn+"Combo");
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
-                            }
+                                as.analmap(overallprofile);
+                                pie.complexrender(overallprofile+"Combo");
+                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
                             break;
 
                         case 18:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                                pie.complexrender(piepro+"Combo");
-
-                            } else {
-                                as.analmap(pro1.ofn);
-                                pie.complexrender(pro1.ofn+"Combo");
-                            }
+                                as.analmap(overallprofile);
+                                pie.complexrender(overallprofile+"Combo");
                             break;
                         case 19:
-                            if (auto == true) {
-                                as.analmap(piepro);
-                                pie.complexrender(piepro+"Combo");
-                                pie.render(piepro, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(piepro+"Total", tota, totb, totx, toty);
 
-                            } else {
-                                as.analmap(pro1.ofn);
-                                pie.complexrender(pro1.ofn+"Combo");
-                                pie.render(pro1.ofn, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(pro1.ofn+"Total", tota, totb, totx, toty);
-                            }
+                                as.analmap(overallprofile);
+                                pie.complexrender(overallprofile+"Combo");
+                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
+
                             break;
                     }
                 }
@@ -349,12 +274,12 @@ public class Main extends Application
         select.setOnAction(sel ->
         {
             pro1.selector();
-            String keeper=pro1.ofn;
+           // String keeper=pro1.ofn;
 
             if(pro1.test==true)
             {
                 fd.inputgetter();
-                activepro.setText("Active profile:"+keeper);
+                activepro.setText("Active profile:"+pro1.ofn);
                 active=true;
             }
             else
@@ -463,12 +388,13 @@ public class Main extends Application
                 if(value.contains(fd.profiles.get(i)))
                 {
                     //sets the string piepro to the profile found
-                    piepro=fd.profiles.get(i);
+                    autoprofile=fd.profiles.get(i);
                     //adds a small glowing effect to it
                     activepro.setEffect(new Glow(0.3));
-                    activepro.setText("AUTO-DETECTED: "+piepro);
+                    activepro.setText("AUTO-DETECTED: "+autoprofile);
+                    overallprofile=autoprofile;
 
-                    fd.read(piepro+".txt");
+                    fd.read(autoprofile+".txt");
                     active=true;//sets the auto detect to true.
                     System.out.println("found it");
                     box.setvars();
@@ -489,7 +415,7 @@ public class Main extends Application
     void prep()
     {
         //updating the permanent variables before graphing
-        fd.writestats(piepro,box.ac,box.bc,box.xc,box.yc);
+        fd.writestats(autoprofile,box.ac,box.bc,box.xc,box.yc);
 
         box.varprep();// maps the xbox vars
         totprep(); //maps the total vars

@@ -10,7 +10,7 @@ import javafx.geometry.*;
 
 import java.io.IOException;
 
-public class Profile
+public class Profile extends Main
 {
     Fileio fd = new Fileio();
     Pbox pb = new Pbox();
