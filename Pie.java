@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -39,7 +40,7 @@ public class Pie extends Main {
                 new PieChart.Data("(Y)"+fd.input.get(3),y));
         PieChart chart = new PieChart(data);
         chart.setTitle(piepro);
-
+        chart.setLabelsVisible(false);
 
         //the label for displaying the percentage of the button pressed.
         final Label percendisplay = new Label();
@@ -59,6 +60,7 @@ public class Pie extends Main {
         chart.setLegendSide(Side.TOP);
 
         ((Group) scene.getRoot()).getChildren().addAll(chart,percendisplay);
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.showAndWait();
     }
@@ -90,7 +92,9 @@ public class Pie extends Main {
                 new PieChart.Data("(YY)",box.combo[9]));
 
         PieChart chart = new PieChart(data);
+
         chart.setTitle(piepro);
+        chart.setLabelsVisible(false);
 
 
         //the label for displaying the percentage of the button pressed.

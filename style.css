@@ -2,9 +2,9 @@
 {
     -fx-font-size: 16pt;
     -fx-font-family: "Coolvetica Rg";
-    -fx-base: #4C4C4C;
+    -fx-base: #424242;
     -fx-stroke: #b2bfc8;
-    -fx-background: #4C4C4C;
+    -fx-background:#424242;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover, auto;
@@ -25,6 +25,5 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #b2bfc8;
 }
-
 
 

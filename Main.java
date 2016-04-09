@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -16,12 +17,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 import javafx.util.Duration;
 
+import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import static java.lang.Math.random;
@@ -66,7 +69,7 @@ public class Main extends Application
 
         //SOUNDS
         String filelocation = getClass().getResource("sound.wav").toString(); //Path to the soundfile
-       // System.out.println(filelocation);
+        // System.out.println(filelocation);
         AudioClip timedone = new AudioClip(filelocation);
 
         mainmenu = primaryStage;
@@ -99,29 +102,14 @@ public class Main extends Application
                     mainmenu.setScene(pm);
                     mainmenu.setTitle("Controller Profile Screen");
                     max= fd.profiles.size();
-                   res = gen.nextInt(max);
+                    res = gen.nextInt(max);
                 }
         );
 
-        Button etc = new Button("Other options");
+        Button etc = new Button("Advanced options");
         etc.setOnAction(pm ->
                 {
-                    mainmenu.setTitle("Controller Misc options");
-                    mainmenu.setScene(em);
-                }
-        );
-
-        Button selector = new Button("Graph Selector");
-        selector.setOnAction(pm ->
-                {
                     pro1.graphlist();
-                }
-        );
-
-        Button about = new Button("About me");
-        about.setOnAction(pm ->
-                {
-                    pb.warning("About the program/Dev","Hi this program was written by Ciaran Ó Nuallain. \n" + "I did this for my 2nd year end of year assignment. \n" + "\n" + "A hidden tip is: Hitting \"select\" will stop the timer");
                 }
         );
 
@@ -132,14 +120,6 @@ public class Main extends Application
                     mainmenu.setTitle("Controller Home Screen");
                     res = gen.nextInt(max);
                     randompro.setText(fd.profiles.get(res)+'\r' +"Is a profile you have");
-                }
-        );
-        Button b2m2 = new Button("Back to main menu");
-        b2m2.setOnAction(pm ->
-                {
-                    mainmenu.setScene(mm);
-                    mainmenu.setTitle("Controller Home Screen");
-                    res = gen.nextInt(max);
                 }
         );
 
@@ -156,7 +136,7 @@ public class Main extends Application
                 Gameopen();
             }
 
-             if(pro1.start==true)
+            if(pro1.start==true)
             {
                 overallprofile=pro1.ofn;
             }
@@ -177,76 +157,89 @@ public class Main extends Application
                     switch (pro1.combo)
                     {
                         case 1:
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            box.setvars();
                             break;
 
                         case 3:
-                                pie.render(overallprofile, tota, totb, totx, toty);
+                            pie.render(overallprofile, tota, totb, totx, toty);
+                            box.setvars();
                             break;
 
                         case 4:
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(overallprofile, tota, totb, totx, toty);
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            pie.render(overallprofile, tota, totb, totx, toty);
+                            box.setvars();
                             break;
 
                         case 5:
-                                pie.complexrender(overallprofile+"Combo");
+                            pie.complexrender(overallprofile+"Combo");
+                            box.setvars();
                             break;
 
                         case 6:
-                                pie.complexrender(overallprofile+"Combo");
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            pie.complexrender(overallprofile+"Combo");
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            box.setvars();
                             break;
 
                         case 8:
-                                pie.complexrender(overallprofile+"Combo");
-                                pie.render(overallprofile, tota, totb, totx, toty);
+                            pie.complexrender(overallprofile+"Combo");
+                            pie.render(overallprofile, tota, totb, totx, toty);
+                            box.setvars();
                             break;
 
                         case 10:
-                                as.analmap(overallprofile);
+                            as.analmap(overallprofile);
+                            box.setvars();
                             break;
 
                         case 9:
-                                pie.complexrender(overallprofile+"Combo");
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            pie.complexrender(overallprofile+"Combo");
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            box.setvars();
                             break;
 
                         case 11:
 
-                                as.analmap(overallprofile);
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            as.analmap(overallprofile);
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            box.setvars();
                             break;
 
                         case 13:
-                                as.analmap(overallprofile);
-                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            as.analmap(overallprofile);
+                            pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            box.setvars();
                             break;
 
                         case 14:
-                                as.analmap(overallprofile);
-                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            as.analmap(overallprofile);
+                            pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            box.setvars();
                             break;
 
                         case 15:
-                                as.analmap(overallprofile);
-                                pie.complexrender(overallprofile+"Combo");
-                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            as.analmap(overallprofile);
+                            pie.complexrender(overallprofile+"Combo");
+                            pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            box.setvars();
                             break;
 
                         case 18:
-                                as.analmap(overallprofile);
-                                pie.complexrender(overallprofile+"Combo");
+                            as.analmap(overallprofile);
+                            pie.complexrender(overallprofile+"Combo");
+                            box.setvars();
                             break;
                         case 19:
 
-                                as.analmap(overallprofile);
-                                pie.complexrender(overallprofile+"Combo");
-                                pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
-                                pie.render(overallprofile+"Total", tota, totb, totx, toty);
-
+                            as.analmap(overallprofile);
+                            pie.complexrender(overallprofile+"Combo");
+                            pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
+                            pie.render(overallprofile+"Total", tota, totb, totx, toty);
+                            box.setvars();
                             break;
                     }
                 }
@@ -257,11 +250,15 @@ public class Main extends Application
                     box.setvars();
                 }
             }
+            else
+            {
+                activepro.setText("Make or select a profile first from Profile Menu");
+            }
         });
 
         //-------------------------------------------------------PROFILE MENU BUTTONS
         //new profile
-        Button profile = new Button("Create new profile");
+        Button profile = new Button("New game profile");
         profile.setOnAction(prof ->
                 {
                     pro1.title();
@@ -270,11 +267,11 @@ public class Main extends Application
 
 
         //select
-        Button select = new Button("Select profile");
+        Button select = new Button("Select a profile");
         select.setOnAction(sel ->
         {
             pro1.selector();
-           // String keeper=pro1.ofn;
+            // String keeper=pro1.ofn;
 
             if(pro1.test==true)
             {
@@ -297,7 +294,7 @@ public class Main extends Application
 
         //-----------------------------------------------------------ETC MENU BUTTONS
 
-       //BACKGROUND FIREFLY VISUALS
+        //BACKGROUND FIREFLY VISUALS
 
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
 
@@ -332,7 +329,6 @@ public class Main extends Application
                             new KeyValue(circle.translateYProperty(), random()*screen.getWidth()))
             );
         }
-
         timeline.play();
 
         StackPane mmlayout = new StackPane();
@@ -345,13 +341,6 @@ public class Main extends Application
 
         mmlayout.getChildren().addAll(fireflies,begin,promenu,etc, quit,activepro);
         mm = new Scene(mmlayout, 600, 600);
-        StackPane emlayout = new StackPane();
-
-        StackPane.setAlignment(selector, Pos.BOTTOM_LEFT);
-        StackPane.setAlignment(about, Pos.BOTTOM_CENTER);
-        StackPane.setAlignment(b2m2, Pos.BOTTOM_RIGHT);
-        emlayout.getChildren().addAll(selector,about,b2m2);
-        em = new Scene(emlayout, 600, 600);
 
         StackPane pmlayout = new StackPane();
 
@@ -365,7 +354,6 @@ public class Main extends Application
 
         mm.getStylesheets().add("style.css");
         pm.getStylesheets().add("style.css");
-        em.getStylesheets().add("style.css");
 
         mainmenu.setScene(mm);
         mainmenu.show();

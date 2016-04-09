@@ -62,7 +62,6 @@ public class Analstick extends Main
         RIGHT.getData().add(new XYChart.Data(GE3, box.rau));
         RIGHT.getData().add(new XYChart.Data(GE4, box.rad));
 
-
         Scene scene  = new Scene(analchart,600,600);
         analchart.getData().addAll(LEFT,RIGHT);
         amap.setScene(scene);

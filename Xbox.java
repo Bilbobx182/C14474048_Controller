@@ -117,7 +117,17 @@ public class Xbox{
             e.printStackTrace();
         }
         //setting it to the XBOX since I know xbox is controller 0
-        controller = Controllers.getController(0);
+
+        for(int u=0;u<Controllers.getControllerCount();u++)
+        {
+            controller = Controllers.getController(u);
+            System.out.println(controller.getName());
+            if(controller.getName().contains("Controller"))
+            {
+                break;
+            }
+        }
+
         for (int i = 0; i < controller.getAxisCount(); i++)
         {
             //  System.out.println(controller.getAxisName(i));
@@ -372,7 +382,6 @@ public class Xbox{
 
     public static void buttontime(int number)
     {
-        //Still buggy doesn't work 100% yet, it's about 85% accurate.
         if(buttoncounter==0)
         {
             //gets the first buttons time it was pressed and adds the value corresponding to it to the arraylist.
