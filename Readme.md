@@ -16,12 +16,8 @@ Most importantly how they could do better.
 
 So enough with the wall of text,here are a few (WIP) screenshots:
 
-![Main menu](http://i.imgur.com/gLdd8rJ.png)"This is the main menu along with a piechart by its side")
+![Main menu]http://i.imgur.com/JaW812O.gif)"This is the main menu along with a piechart by its side")
 
-
-![Piechart](http://i.imgur.com/WUQU2fM.png)"A closer version of the piechart, you can click on each sector and it gives you the percentage of it.")
-
-![Piechart to Barchart](http://i.imgur.com/ufSiKif.gif )"So this is where things are getting really cool. The user has an option of 4 graphs that they can pick from(subject to change) This shows it going from the piechart of that game to the barchart of where they moved their analogue sticks")
-
+![Piechart to Barchart](http://i.imgur.com/ufSiKif.gif )"So this is where things are getting really cool. The user has an option of 4 graphs that they can pick fromThis shows it going from the piechart of that game to the barchart of where they moved their analogue sticks")
 
 ![Piechart](http://i.imgur.com/Qo8SRbm.gif)"With no wizardry afoot here, The program can automatically detect changes from when you stop playing 1 game to start playing another")
