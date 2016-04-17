@@ -13,10 +13,11 @@ But it's not meant for just 1 game, I want to be able to apply it to *every* gam
 
 Imagine all the statistics. All the data. Friends in the same game playing different roles would be able to see how they did. How they added to the team unit.
 Most importantly how they could do better.
+You will probably need the DLL files in the same folder as the jar. I put them in there in case you don't have them.
 
 So enough with the wall of text,here are a few (WIP) screenshots:
 
-![Main menu]http://i.imgur.com/JaW812O.gif)"This is the main menu along with a piechart by its side")
+![Main menu](http://i.imgur.com/JaW812O.gif)"This is the main menu along with a piechart by its side")
 
 ![Piechart to Barchart](http://i.imgur.com/ufSiKif.gif )"So this is where things are getting really cool. The user has an option of 4 graphs that they can pick fromThis shows it going from the piechart of that game to the barchart of where they moved their analogue sticks")
 
