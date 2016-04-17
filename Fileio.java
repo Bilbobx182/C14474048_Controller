@@ -17,11 +17,13 @@ public class Fileio
         try
         {
             int i=0;
+            //a file reader so we can read the overall stats of the player
             BufferedReader reader = new BufferedReader(new FileReader("files\\"+profilename+"STATS"+".txt"));
             String current="";
 
             while((current=reader.readLine()) !=null)
             {
+                //gets the A,B,X,Y values, and stores them in provalues
                 float temp=Float.valueOf(current);
                 provalues[i]=temp;
                 i++;
@@ -40,6 +42,7 @@ public class Fileio
         PrintWriter fd = null;
         try
         {
+            //a file printer so we can update the users overall stats for each profile
             fd = new PrintWriter("files\\"+profilename+"STATS"+".txt", "UTF-8");
         }
         catch (FileNotFoundException PROBLEM)
@@ -51,6 +54,7 @@ public class Fileio
             pb.warning("FILE ERROR","Oops,encoding is wrong, please email me");
         }
 
+        //calculates thes values of what everything should be before printing it to the file
         ac+=provalues[0];
         bc+=provalues[1];
         xc+=provalues[2];
@@ -59,11 +63,12 @@ public class Fileio
         b=bc;
         x=xc;
         y=yc;
+        //resets the values of provalues each itteration.
         for(int j=0;j<4;j++)
         {
             provalues[j]=0;
         }
-
+        //writes to the file then closes
         fd.println(ac);
         fd.println(bc);
         fd.println(xc);
@@ -74,6 +79,7 @@ public class Fileio
 
     public void write(String profilename,String aval,String bval, String xval,String yval)
     {
+        //This is for when the user enters what they want each profile to be, it then writes the input that they give.
         PrintWriter writer = null;
         try
         {
@@ -100,7 +106,6 @@ public class Fileio
         boolean test;
         int i=0;
         try
-
         {
             BufferedReader reader = new BufferedReader(new FileReader("files\\"+filename));
             String current="";
@@ -124,6 +129,7 @@ public class Fileio
         return test;
     }
 
+    //presumably a legacy function, but I'd rather not delete it just in case.
     public void inputgetter()
     {
         int i=0;
@@ -136,6 +142,7 @@ public class Fileio
 
     public void newappend(String filename) throws IOException
     {
+        //deals with the profile list and appending stuff to that.
         try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("files\\"+"prolist.txt", true))))
         {
           //  System.out.println("TRYING TO PRINT");
@@ -153,6 +160,7 @@ public class Fileio
     {
         profiles.clear();
 
+        //adds a list of profiles together into the profiles arraylsit for auto-detecting profiles later
         BufferedReader reader = null;
         try
         {

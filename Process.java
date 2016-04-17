@@ -16,6 +16,7 @@ public class Process
         java.lang.Process activepro = null;
         try
         {
+            //trys to run and access tasklist.exe
             activepro=Runtime.getRuntime().exec("tasklist.exe");
         }
         catch (IOException e)
@@ -25,12 +26,14 @@ public class Process
 
         try
         {
+            //if it is successful it reads in the contents of tasklist
             BufferedReader tlist = new BufferedReader(new InputStreamReader(activepro.getInputStream()));
-
             while ((line = tlist.readLine()) != null)
             {
+                //because there are some lines that are null we don't want to add those to the list.
                 if (!line.trim().equals(""))
                 {
+                    //we then trim the string down removing the excess stuff from it other than the program name
                    result=(line.substring(0, line.indexOf(" ")));
                     if(result.contains(".exe"))
                     {

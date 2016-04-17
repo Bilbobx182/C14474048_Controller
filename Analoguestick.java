@@ -9,7 +9,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-public class Analstick extends Main
+public class Analoguestick extends Main
 {
 
     double startX,startY,endX,endY,test;
@@ -18,36 +18,36 @@ public class Analstick extends Main
     String GE3 = "Up";
     String GE4 = "Down";
 
-    Analstick()
+    Analoguestick()
     {
         startX=startY=endX=endY=0;
         test=5;
     }
 
-    public void analmap(String name)
+    public void analoguegraph(String name)
     {
-
         Stage amap = new Stage();
-
         amap.initModality(Modality.APPLICATION_MODAL);
         amap.setTitle(name);
 
-        //make it so the window is big enough to bother people.
+        //make it so the window is big enough
         amap.setMaxWidth(600);
         amap.setMaxHeight(600);
         amap.setMinHeight(600);
         amap.setMaxWidth(600);
 
+        //creating the X and Y axis.
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
 
-        BarChart<String, Number> analchart = new BarChart<>(xAxis, yAxis);
-        analchart.setId("ACHART");
+        BarChart<String, Number> analoguechart = new BarChart<>(xAxis, yAxis);
+        analoguechart.setId("Analogue barchart");
 
-        analchart.setTitle(name);
+        analoguechart.setTitle(name);
         xAxis.setLabel("Stick name");
         yAxis.setLabel("Times Moved");
 
+        //Making it so the left hand side analogue stick and the right one are in different "sets" of data.
         XYChart.Series LEFT = new XYChart.Series();
         LEFT.setName("Left Stick");
         LEFT.getData().add(new XYChart.Data(GE1, box.lal));
@@ -62,8 +62,8 @@ public class Analstick extends Main
         RIGHT.getData().add(new XYChart.Data(GE3, box.rau));
         RIGHT.getData().add(new XYChart.Data(GE4, box.rad));
 
-        Scene scene  = new Scene(analchart,600,600);
-        analchart.getData().addAll(LEFT,RIGHT);
+        Scene scene  = new Scene(analoguechart,600,600);
+        analoguechart.getData().addAll(LEFT,RIGHT);
         amap.setScene(scene);
         amap.show();
     }

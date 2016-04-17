@@ -26,7 +26,7 @@ public class Xbox{
 
     static int buttoncounter;
     static boolean lalb,larb,laub,ladb,ralb,rarb,radb,raub;
-    static long timebetween,buttonms,minutecounterstart,minutecounterstop;
+    static long timebetween,buttonms;
     static boolean minute;
 
     static int height,width,total;
@@ -69,43 +69,6 @@ public class Xbox{
          */
     }
 
-    public static void monitor()
-    {
-        //gui for basic stats like amount of times pressed.
-        Stage live = new Stage();
-        live.initModality(Modality.APPLICATION_MODAL);
-        live.setTitle("Timer setup");
-
-        live.setMinWidth(height/2);
-        live.setMaxHeight(height);
-        live.setMinHeight(height);
-        live.setMaxWidth(height/2);
-
-        Label alab = new Label("A: "+ac);
-        Label blab = new Label("B: "+bc);
-        Label xlab = new Label("X: "+xc);
-        Label ylab = new Label("Y: "+yc);
-
-        Button finish = new Button("Finish");
-        finish.setOnAction(lam ->
-                {
-                    done=true;
-                    live.close();
-                }
-        );
-
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(alab,blab,xlab,ylab,finish);
-        layout.setAlignment(Pos.CENTER);
-
-        //Display window and wait for it to be closed before returning
-        Scene scene = new Scene(layout);
-
-        live.setScene(scene);
-        scene.getStylesheets().add("style.css");
-        live.showAndWait();
-    }
-
     public static void setup()
     {
         try//Attempts to create an instance for the xbox controller
@@ -116,12 +79,12 @@ public class Xbox{
         {
             e.printStackTrace();
         }
-        //setting it to the XBOX since I know xbox is controller 0
-
+        //Because even though my controller is controller 0 it may not be the same for others so it checks for the keyword of controller
         for(int u=0;u<Controllers.getControllerCount();u++)
         {
             controller = Controllers.getController(u);
             System.out.println(controller.getName());
+            //once it finds it it is happy out and leaves the loop
             if(controller.getName().contains("Controller"))
             {
                 break;
@@ -131,16 +94,16 @@ public class Xbox{
         for (int i = 0; i < controller.getAxisCount(); i++)
         {
             //  System.out.println(controller.getAxisName(i));
+            //setting the deadzone so it will only detect major changes in the analogue stick
             controller.setDeadZone(i, (float) 0.4);
         }
     }
 
     public static void polling()
     {
-
+        //done will only change when the time is done, OR when the user hits select.
         while (done != true)
         {
-
             controller.poll();
             a = controller.isButtonPressed(0);
             b = controller.isButtonPressed(1);
@@ -335,7 +298,10 @@ public class Xbox{
 
     public static void buttonadder()
     {
-
+            /* Since I know no X amount of comibnations can amount to the same values,
+            by this I mean no other combination will give the same results as A+B I can determine which combination was pressed.
+            I then add the values that I gave to each button to find out which combination it was.
+             */
             int buttval = buttonvalues.get(0) + buttonvalues.get(1);
             switch (buttval)
             {
@@ -430,6 +396,7 @@ public class Xbox{
 
         int major,minor,increment,MAXMIN,MINMIN;
         major=15;
+        //Maximum amount of minutes that the user can play. I created this variable so it'd be easier to change in the slider
         MAXMIN=60;
         MINMIN=0;
         increment=5;
@@ -440,6 +407,7 @@ public class Xbox{
             minor=1;
         }
 
+        //This section here deals with the timeline slider. Setting the variables I want to give it.
         Label timelable= new Label("Select how long you want:");
         Timelen.setMin(MINMIN);
         Timelen.setEffect(new Glow(0.4));
@@ -494,6 +462,7 @@ public class Xbox{
 
     public static void varprep()
     {
+        //maps and rounds the values so I can have nice values for the peicharts.
         ac=map(ac,0,total,0,100);
         bc=map(bc,0,total,0,100);
         yc=map(yc,0,total,0,100);
@@ -503,6 +472,7 @@ public class Xbox{
         xc=Math.round(xc);
         yc=Math.round(yc);
 
+        //calculates the total.
         int total=0;
         for(int i=0;i<10;i++)
         {
@@ -534,6 +504,43 @@ public class Xbox{
 
            // System.out.println("LAL"+lal+"LAR"+lar);
            // System.out.println("LAU"+lau+"LAD"+lad);
+
+              public static void monitor()
+    {
+        //gui for basic stats like amount of times pressed.
+        Stage live = new Stage();
+        live.initModality(Modality.APPLICATION_MODAL);
+        live.setTitle("Timer setup");
+
+        live.setMinWidth(height/2);
+        live.setMaxHeight(height);
+        live.setMinHeight(height);
+        live.setMaxWidth(height/2);
+
+        Label alab = new Label("A: "+ac);
+        Label blab = new Label("B: "+bc);
+        Label xlab = new Label("X: "+xc);
+        Label ylab = new Label("Y: "+yc);
+
+        Button finish = new Button("Finish");
+        finish.setOnAction(lam ->
+                {
+                    done=true;
+                    live.close();
+                }
+        );
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(alab,blab,xlab,ylab,finish);
+        layout.setAlignment(Pos.CENTER);
+
+        //Display window and wait for it to be closed before returning
+        Scene scene = new Scene(layout);
+
+        live.setScene(scene);
+        scene.getStylesheets().add("style.css");
+        live.showAndWait();
+    }
      */
 
 }

@@ -6,8 +6,9 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 
-public class Pbox{
-
+public class Pbox
+{
+//USED as a Pop-up Box style warning or system for when the user does something wrong or something unexpected happens.
     public void warning(String name, String text)
     {
         Stage pop = new Stage();

@@ -23,29 +23,38 @@ public class Pie extends Main {
 
         System.out.println(a);
 
+        //sets the stage width an height limits so they cant resieze.
         stage.setWidth(500);
         stage.setHeight(500);
         stage.setMinHeight(500);
         stage.setMinWidth(500);
-
+        //rounds the math values so they aren't  x.yyyyyy%
         a=Math.round(a);
         b=Math.round(b);
         x=Math.round(x);
         y=Math.round(y);
 
+
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
+                //creates the sections of the piecharts that can exist.
                 new PieChart.Data("(A)"+fd.input.get(0),a),
                 new PieChart.Data("(B)"+fd.input.get(1),b),
                 new PieChart.Data("(X)"+fd.input.get(2),x),
                 new PieChart.Data("(Y)"+fd.input.get(3),y));
+        //creates the piechart itself
         PieChart chart = new PieChart(data);
+
+        //sets the title,ledgend, and label visibility.
         chart.setTitle(piepro);
         chart.setLabelsVisible(false);
+        chart.setLabelLineLength(width/3);
+        chart.setLegendSide(Side.TOP);
 
         //the label for displaying the percentage of the button pressed.
         final Label percendisplay = new Label();
         percendisplay.setTextFill(Color.BLACK);
 
+        //a loop that runs around finding the X and Y of where the user clicked the mouse.
         for (final PieChart.Data d : chart.getData())
         {
             d.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, lam ->
@@ -56,11 +65,7 @@ public class Pie extends Main {
             });
         }
 
-        chart.setLabelLineLength(width/3);
-        chart.setLegendSide(Side.TOP);
-
         ((Group) scene.getRoot()).getChildren().addAll(chart,percendisplay);
-        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.showAndWait();
     }

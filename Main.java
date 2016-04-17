@@ -4,7 +4,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,19 +11,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Glow;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.geometry.*;
 import javafx.util.Duration;
 
-import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import static java.lang.Math.random;
@@ -62,31 +57,24 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        OStest();
-
-        Fileio fd = new Fileio();
-        Profile pro1 = new Profile();
-
-        //SOUNDS
-        String filelocation = getClass().getResource("sound.wav").toString(); //Path to the soundfile
-        // System.out.println(filelocation);
-        AudioClip timedone = new AudioClip(filelocation);
-
         mainmenu = primaryStage;
         mainmenu.setOnCloseRequest(lam -> mainmenu.close());
         box.setup();
         mainmenu.setTitle("Controller Home Screen");
 
-        //EFFECTS
-        InnerShadow shadow = new InnerShadow();
-        shadow.setOffsetX(4);
-        shadow.setOffsetY(4);
-        shadow.setColor(Color.web("0x3b596d"));
+        Fileio fd = new Fileio();
+        Profile pro1 = new Profile();
+        Pie pie=new Pie();
+        Analoguestick as=new Analoguestick();
 
+        OStest();
+
+        //Path to the soundfile
+        String filelocation = getClass().getResource("sound.wav").toString();
+        AudioClip timedone = new AudioClip(filelocation);
 
 
         //-------------------------------------------------------MAIN MENU BUTTONS
-        Pie pie=new Pie();
         //Quit button
         Button quit = new Button("Quit");
         quit.setOnAction(aquit->
@@ -109,6 +97,7 @@ public class Main extends Application
         Button etc = new Button("Advanced options");
         etc.setOnAction(pm ->
                 {
+                    //this is where they select which active graphs they want
                     pro1.graphlist();
                 }
         );
@@ -124,9 +113,9 @@ public class Main extends Application
         );
 
         //START
-        Analstick as=new Analstick();
         Button begin = new Button("Start");
         begin.setEffect(new Glow(0.25));
+        //making it so the start button will always be super wide no matter what resolution.
         begin.setMaxWidth(900000000);
         begin.setMaxHeight(50);
         begin.setOnAction(prof ->
@@ -150,7 +139,6 @@ public class Main extends Application
                 box.polling();
                 timedone.play(1.0);
                 prep();
-
 
                 if(box.total > minbuttonpress)
                 {
@@ -190,7 +178,7 @@ public class Main extends Application
                             break;
 
                         case 10:
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             box.setvars();
                             break;
 
@@ -203,39 +191,39 @@ public class Main extends Application
 
                         case 11:
 
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             box.setvars();
                             break;
 
                         case 13:
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             pie.render(overallprofile+"Total", tota, totb, totx, toty);
                             box.setvars();
                             break;
 
                         case 14:
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             pie.render(overallprofile+"Total", tota, totb, totx, toty);
                             pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             box.setvars();
                             break;
 
                         case 15:
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             pie.complexrender(overallprofile+"Combo");
                             pie.render(overallprofile+"Total", tota, totb, totx, toty);
                             box.setvars();
                             break;
 
                         case 18:
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             pie.complexrender(overallprofile+"Combo");
                             box.setvars();
                             break;
                         case 19:
 
-                            as.analmap(overallprofile);
+                            as.analoguegraph(overallprofile);
                             pie.complexrender(overallprofile+"Combo");
                             pie.render(overallprofile, box.ac, box.bc, box.xc, box.yc);
                             pie.render(overallprofile+"Total", tota, totb, totx, toty);
@@ -310,9 +298,11 @@ public class Main extends Application
             fireflies.getChildren().add(firefly);
         }
 
+        //applying effects to the firefly circles
         fireflies.setEffect(new BoxBlur(15,15,15));
         fireflies.setEffect(new Glow(random()*random()*25));
 
+        //Timeline Javafx is generally used for animation so here's my attempt at that.
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -331,6 +321,7 @@ public class Main extends Application
         }
         timeline.play();
 
+        // They layouts for each screen that I have.
         StackPane mmlayout = new StackPane();
 
         StackPane.setAlignment(begin, Pos.TOP_CENTER);
@@ -420,6 +411,7 @@ public class Main extends Application
 
     void OStest()
     {
+        //To see if it's in windows, as any other OS won't have tasklist.exe and it'd probably break the program.
         String Operating=System.getProperty("os.name");
         OS=Operating.toLowerCase().contains("WINDOWS".toLowerCase());
     }

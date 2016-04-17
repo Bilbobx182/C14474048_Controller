@@ -51,3 +51,4 @@ V.0.4.9		Fixed bug where at the start it auto ticking the boxes wouldn't give th
 V.0.5.0		Added other options scene/layer/window mode. Fixed a typo that caused a bug with the total ABXY piechart.
 V.0.5.1 	Eliminated excess code related to case in Main. Added in sample code from video tutorial. 
 V.0.5.2		Fixed controller support for other PC's.  Added in support for controllers other than xbox(although not tested). Removed piechart labels. Made home screen more intuitive. 
+V.0.5.3 	Commented code more, restructed code to make it easier to understand. General Refactoring.
