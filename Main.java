@@ -231,12 +231,6 @@ public class Main extends Application
                             break;
                     }
                 }
-                else
-                {
-                    pb.warning("BUTTON ERROR","Please press the buttons more for better graphs :( ");
-                    box.total=minbuttonpress+1;
-                    box.setvars();
-                }
             }
             else
             {

@@ -54,3 +54,4 @@ V.0.5.2		Fixed controller support for other PC's.  Added in support for controll
 V.0.5.3 	Commented code more, restructed code to make it easier to understand. General Refactoring.
 V.0.5.4		Updated the readme.
 V.0.5.5		Added the DLL files needed to run and fixed the readme error.
+V.0.5.6		Updated code, removed error prone else. Updated readme.

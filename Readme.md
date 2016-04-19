@@ -22,3 +22,5 @@ So enough with the wall of text,here are a few (WIP) screenshots:
 ![Piechart to Barchart](http://i.imgur.com/ufSiKif.gif )"So this is where things are getting really cool. The user has an option of 4 graphs that they can pick fromThis shows it going from the piechart of that game to the barchart of where they moved their analogue sticks")
 
 ![Piechart](http://i.imgur.com/Qo8SRbm.gif)"With no wizardry afoot here, The program can automatically detect changes from when you stop playing 1 game to start playing another")
+
+![Devs I talked to about this](http://i.imgur.com/adK48S6.png) "I messaged a few developers from game companies that I loved early on in the assignment to see how I could make it better and what they thought Joost from Ronimo who makes awesoemnauts gave really great insight and Thomas Silloway from Psyonix gave a great responce of encouragement too "
